@@ -1,13 +1,11 @@
 import sbt._
 
 object MyDependencies {
-  //  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5"
 
   val akkaVersion = "2.5.17"
   val akkaHttpVersion = "10.1.7"
 
   val thirdDependencies = Seq(
-
     // prod
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
