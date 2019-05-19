@@ -1,0 +1,19 @@
+service_db:
+  container_name: container_db
+  image: mysql:5.7
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_DATABASE=play_db
+
+service_redis:
+  container_name: container_redis
+  image: redis
+
+service_scala:
+  container_name: container_scala_sbt
+  image: bigtruedata/sbt
+  links:
+    - service_db
+    - service_redis
+  volumes:
+    - ".:/app"
