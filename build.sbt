@@ -1,8 +1,6 @@
 name := """play_oauth"""
 organization := "blurbit"
 
-//lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
 val commonsSettings = Seq(
   version := "1.0",
   scalaVersion := "2.12.6"
@@ -12,22 +10,14 @@ val akkaVersion = "2.5.17"
 val akkaHttpVersion = "10.1.7"
 
 val thirdDependencies = Seq(
-  // akka
-  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-http-core" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
-
   // tools
+  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
   "com.github.nscala-time" %% "nscala-time" % "2.20.0",
   "com.typesafe.play" %% "play-json" % "2.6.10",
 
   // redis
   "net.debasishg" %% "redisclient" % "3.9",
-
   // slick
-  //    "com.typesafe.play" %% "play-slick" % "3.0.1",
   "com.typesafe.play" %% "play-slick-evolutions" % "3.0.1",
   "mysql" % "mysql-connector-java" % "5.1.21",
   "com.typesafe.slick" %% "slick" % "3.3.0",
@@ -62,6 +52,7 @@ lazy val domain = (project in file("subprojects/domain"))
   )
 
 lazy val learning = (project in file("subprojects/learning"))
+  .dependsOn(domain % "test->test;compile->compile")
   .settings(
     name := "learning subproject",
     commonsSettings,
@@ -69,7 +60,7 @@ lazy val learning = (project in file("subprojects/learning"))
   )
 
 lazy val root = (project in file("."))
-  .aggregate(domain,infrastructure)
+  .aggregate(learning, domain,infrastructure)
   .settings(
     name := "root project",
     commonsSettings,
