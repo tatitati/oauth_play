@@ -6,7 +6,6 @@ import org.scalatest.{BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.meta.MTable
 import slick.lifted.TableQuery
-import play.api.db.slick.DatabaseConfigProvider
 
 class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   val authSchema = TableQuery[AuthSchema]
@@ -14,7 +13,6 @@ class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   //implicit val db = DatabaseConfigProvider.get[JdbcProfile]("mydb")(Play.current).db
 
   test("database forconfig type is:") {
-    println(db)
     assert(db.isInstanceOf[Database])
   }
 
@@ -31,6 +29,10 @@ class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   override def beforeEach() {
     exec(authSchema.schema.dropIfExists)
     exec(authSchema.schema.create)
+  }
+
+  override def afterEach(): Unit = {
+    db.close()
   }
 }
 

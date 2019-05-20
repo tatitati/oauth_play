@@ -18,3 +18,4 @@ project/*
 gradle/
 .g8/
 gradlew*
+public/
