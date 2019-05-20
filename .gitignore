@@ -14,4 +14,7 @@ project/*
 .idea
 !project/MyDependencies.scala
 !project/build.properties
-
+.gradle/
+gradle/
+.g8/
+gradlew*

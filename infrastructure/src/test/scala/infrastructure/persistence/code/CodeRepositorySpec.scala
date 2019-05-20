@@ -13,6 +13,9 @@ class CodeRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAnd
     ConfigFactory.load().getString("redis.ip"),
     ConfigFactory.load().getString("redis.port").toInt
   )
+
+  println(ConfigFactory.load().getString("redis.ip"))
+
   val repo = new CodeRepository(redisClient)
 
   test("Can persist code in redis") {
