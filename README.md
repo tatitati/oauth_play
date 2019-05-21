@@ -71,10 +71,16 @@ docker-compose up
 # Instructions
 
 ```
-docker exec container_scala_sbt sbt test
-        ...                     sbt 'domain/test'
-        ...                     sbt 'persistence/test'
-        ...                     sbt run
+docker-compose run service_scala sbt test
+```
+
+Run specific suite test:
+
+```
+docker-compose run service_scala /bin/bash
+        > sbt domain/test
+        > sbt infrastructure/test
+        > sbt learning/test
 ```
 
 Visit: http://localhost:8080/ping
