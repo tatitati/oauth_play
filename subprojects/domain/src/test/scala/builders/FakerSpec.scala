@@ -1,4 +1,4 @@
-package learning
+package test.domain.builders
 
 import org.scalatest.FunSuite
 
