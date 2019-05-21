@@ -52,7 +52,6 @@ lazy val domain = (project in file("subprojects/domain"))
   )
 
 lazy val learning = (project in file("subprojects/learning"))
-  .dependsOn(domain % "test->test;compile->compile")
   .settings(
     name := "learning subproject",
     commonsSettings,
