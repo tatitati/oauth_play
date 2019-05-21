@@ -6,4 +6,6 @@ services:
   - docker
 
 script:
+  #  By default the sbt image has CMD = [sbt]. However, if I run a new sbt, then I have two instances of
+  #  the same process, which create .lock files
   - docker-compose run service_scala sbt test
