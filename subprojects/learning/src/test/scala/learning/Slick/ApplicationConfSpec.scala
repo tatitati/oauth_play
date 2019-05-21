@@ -10,8 +10,6 @@ class ApplicationConfSpec extends FunSuite {
     val value = ConfigFactory.load()
 
     assert(value.isInstanceOf[Config])
-    assert(value.hasPath("akka") === true)
-    assert(value.hasPath("akka.actor") === true)
     assert(value.hasPath("h2mem1") === true, "h2mem1 should be found in application.conf")
     assert(value.hasPath("h2mem1.connectionPool") === true, "h2mem1.connectionPool should be found in application.conf")
     assert(value.hasPath("h2mem1.url") === true, "h2mem1.url should be found in application.conf")
