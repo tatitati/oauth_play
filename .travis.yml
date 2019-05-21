@@ -6,4 +6,4 @@ services:
   - docker
 
 script:
-  - docker-compose run service_scala /bin/bash
+  - docker-compose run service_scala sbt test
