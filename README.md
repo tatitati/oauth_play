@@ -48,6 +48,7 @@
 
 ### with project
 - [ ] Add license file
+- [ ] Add badge icon
 
 
 
