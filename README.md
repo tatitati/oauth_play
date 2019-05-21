@@ -7,11 +7,11 @@
 ### with Docker:
 - [x] ~add redis and mysql in container (this will define better the environment, versions...)~
 - [x] ~Spin up a docker with mysql and a database~
-- [x] ~Figure out how to run still travis with docker in order to pass all the test in CI ~
+- [x] ~Figure out how to run still travis with docker in order to pass all the test in CI~
 - [x] ~Link containers Scala-db-redis~
 - [x] ~Set environmental variables for configuration~
-- [ ] Manage to switch database-container when running tests (this will define better the environment, versions...) :fire:
-- [ ] Put database in volume-host :fire:
+- [ ] :fire: Manage to switch database-container when running tests (this will define better the environment, versions...) 
+- [ ] :fire: Put database in volume-host :fire:
 - [ ] Investigate docker logs & events
 
 ### Fix: 
@@ -32,7 +32,7 @@
 - [ ] Design Register/login of a third :fire:
 - [ ] Start Application layer
 - [ ] Investigate how to handle user-session
-- [ ] BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)
+- [x] ~BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)~
 
 ### with sbt
 - [x] ~Track dependencies: https://www.scala-sbt.org/0.13/docs/Organizing-Build.html~
@@ -40,11 +40,11 @@
 - [x] ~Create subprojects for Domain and infrastructure~
 - [ ] How to tag tests? (and filter them in the CLI)
 - [x] ~Create custom taks in SBT to run tests in specific app-layers~
-- [ ] How to set environment variables like Hosts, port for Redis?, for each environment...scala-env :fire:
+- [x] ~How to set environment variables like Hosts, port for Redis?, for each environment...scala-env~
 - [x] ~Execute test in infrastructure subproject in serie instead of in parallel~
 
 ### With general coding concepts:
-- [ ] Investigate if I should refactor to use Actors :fire:
+- [x] ~Investigate if I should refactor to use Actors~
 
 ### with project
 - [ ] Add license file
