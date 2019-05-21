@@ -72,8 +72,8 @@ docker-compose up
 
 ```
 docker exec container_scala_sbt sbt test
-        ...                     sbt 'testOnly *app.domain*'
-        ...                     sbt 'testOnly *app.persistence*'
+        ...                     sbt 'domain/test'
+        ...                     sbt 'persistence/test'
         ...                     sbt run
 ```
 
