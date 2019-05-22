@@ -16,6 +16,7 @@
 
 ### Fix: 
 - [x] ~updateCallbackUrl() is used in Third. It should belong to thirdadpp.~
+- [ ] Problem with database pool connection
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
