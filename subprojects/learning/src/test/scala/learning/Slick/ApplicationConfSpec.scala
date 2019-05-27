@@ -11,21 +11,20 @@ class ApplicationConfSpec extends FunSuite {
 
     assert(value.isInstanceOf[Config])
     assert(value.hasPath("h2mem1") === true, "h2mem1 should be found in application.conf")
-    assert(value.hasPath("h2mem1.connectionPool") === true, "h2mem1.connectionPool should be found in application.conf")
     assert(value.hasPath("h2mem1.url") === true, "h2mem1.url should be found in application.conf")
 //    assert(value.hasPath("mydb") === true, "mydb should be found in application.conf")
     assert(value.hasPath("slick") === true, "slick should be found in application.conf")
   }
 
-  test("System find application.conf and some slick values are correct") {
+  test("System find application.conf and some h2me1 values are correct") {
     val value = ConfigFactory.load()
 
     assert(value.getString("h2mem1.url") === "jdbc:h2:mem:test1", "h2mem1.url should be equals to: jdbc:h2:mem:test1")
     assert(value.getString("h2mem1.driver") === "org.h2.Driver", "h2mem1.driver should be equals to: org.h2.Driver")
   }
 
-  test("Slick database configuration can be loaded in a different way as well") {
-    val db = Database.forConfig("h2mem1")
-    assert(db.isInstanceOf[Database])
-  }
+//  test("Slick database configuration can be loaded in a different way as well") {
+//    val db = Database.forConfig("h2mem1")
+//    assert(db.isInstanceOf[Database])
+//  }
 }

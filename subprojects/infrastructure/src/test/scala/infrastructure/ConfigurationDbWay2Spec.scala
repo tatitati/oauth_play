@@ -8,10 +8,10 @@ import slick.lifted.TableQuery
 
 class ConfigurationDbWay2Spec extends FunSuite with BeforeAndAfterEach with Exec {
   val authSchema = TableQuery[AuthSchema]
-  implicit val db = Database.forConfig("mydb")
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("database forconfig type is:") {
-    assert(db.isInstanceOf[Database])
+    assert(dbConnection.isInstanceOf[Database])
   }
 
   override def beforeEach() {

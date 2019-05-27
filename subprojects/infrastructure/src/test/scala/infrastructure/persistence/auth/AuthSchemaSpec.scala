@@ -1,5 +1,6 @@
 package infrastructure.test.persistence.auth
 
+import infrastructure.Connection
 import infrastructure.persistence.Exec
 import infrastructure.persistence.auth.AuthSchema
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
@@ -9,11 +10,10 @@ import slick.lifted.TableQuery
 
 class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   val authSchema = TableQuery[AuthSchema]
-  implicit val db = Database.forConfig("mydb")
-  //implicit val db = DatabaseConfigProvider.get[JdbcProfile]("mydb")(Play.current).db
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("database forconfig type is:") {
-    assert(db.isInstanceOf[Database])
+    assert(dbConnection.isInstanceOf[Database])
   }
 
   test("auth table exists") {
@@ -29,10 +29,6 @@ class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   override def beforeEach() {
     exec(authSchema.schema.dropIfExists)
     exec(authSchema.schema.create)
-  }
-
-  override def afterEach(): Unit = {
-    db.close()
   }
 }
 

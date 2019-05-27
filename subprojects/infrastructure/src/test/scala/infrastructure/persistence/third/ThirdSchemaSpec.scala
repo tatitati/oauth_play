@@ -1,5 +1,6 @@
 package infrastructure.test.persistence.third
 
+import infrastructure.Connection
 import infrastructure.persistence.Exec
 import infrastructure.persistence.third.ThirdSchema
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
@@ -9,10 +10,10 @@ import slick.lifted.TableQuery
 
 class ThirdSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   val thirdSchema = TableQuery[ThirdSchema]
-  implicit val db = Database.forConfig("mydb")
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("database forconfig type is:") {
-    assert(db.isInstanceOf[Database])
+    assert(dbConnection.isInstanceOf[Database])
   }
 
   test("third table exists") {

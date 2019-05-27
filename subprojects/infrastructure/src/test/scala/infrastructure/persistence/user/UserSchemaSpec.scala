@@ -1,5 +1,6 @@
 package infrastructure.test.persistence.user
 
+import infrastructure.Connection
 import infrastructure.persistence.Exec
 import infrastructure.persistence.user.UserSchema
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
@@ -9,10 +10,10 @@ import slick.lifted.TableQuery
 
 class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   val ownerSchema = TableQuery[UserSchema]
-  implicit val db = Database.forConfig("mydb")
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("database forconfig type is:") {
-    assert(db.isInstanceOf[Database])
+    assert(dbConnection.isInstanceOf[Database])
   }
 
   test("owner_profile table exists") {
@@ -28,6 +29,5 @@ class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   override def beforeEach() {
     exec(ownerSchema.schema.dropIfExists)
     exec(ownerSchema.schema.create)
-    //sadfasdf
   }
 }
