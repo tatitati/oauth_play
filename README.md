@@ -11,11 +11,13 @@
 - [x] ~Link containers Scala-db-redis~
 - [x] ~Set environmental variables for configuration~
 - [ ] :fire: Manage to switch database-container when running tests (this will define better the environment, versions...) 
-- [ ] :fire: Put database in volume-host :fire:
-- [ ] Investigate docker logs & events
+- [ ] :fire: Put database in volume-host
+- [x] ~Investigate docker logs & events: sbt-docker-compose, testcontainers-scala, docker-it-scala~
+ 
 
 ### Fix: 
 - [x] ~updateCallbackUrl() is used in Third. It should belong to thirdadpp.~
+- [ ] Problem with database pool connection
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
