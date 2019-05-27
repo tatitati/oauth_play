@@ -19,3 +19,6 @@ gradle/
 .g8/
 gradlew*
 public/
+
+conf/logback.xml
+conf/messages
