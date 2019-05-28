@@ -77,7 +77,7 @@ docker-compose run service_scala sbt test
 Run specific suite test:
 
 ```
-docker-compose run service_scala /bin/bash
+docker-compose exec -it service_sbt_scala /bin/bash
         > sbt domain/test
         > sbt infrastructure/test
         > sbt learning/test
