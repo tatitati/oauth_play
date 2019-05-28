@@ -10,8 +10,8 @@
 - [x] ~Figure out how to run still travis with docker in order to pass all the test in CI~
 - [x] ~Link containers Scala-db-redis~
 - [x] ~Set environmental variables for configuration~
-- [ ] :fire: Manage to switch database-container when running tests (this will define better the environment, versions...) 
-- [ ] :fire: Put database in volume-host
+- [ ] Manage to switch database-container when running tests (this will define better the environment, versions...) 
+- [ ] Put database container in volume-host
 - [x] ~Investigate docker logs & events: sbt-docker-compose, testcontainers-scala, docker-it-scala~
  
 
@@ -30,17 +30,15 @@
 - [x] ~Create transformer Code->Auth (this will be a domain service)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
-- [ ] Design Register/login of a user :fire:
-- [ ] Design Register/login of a third :fire:
+- [ ] :fire: Design Register/login of a user (infrastructure layer) :fire:
+- [ ] :fire: Design Register/login of a third (infrastructure layer) :fire:
 - [ ] Start Application layer
-- [ ] Investigate how to handle user-session
 - [x] ~BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)~
 
 ### with sbt
 - [x] ~Track dependencies: https://www.scala-sbt.org/0.13/docs/Organizing-Build.html~
 - [x] ~Use common settings~
 - [x] ~Create subprojects for Domain and infrastructure~
-- [ ] How to tag tests? (and filter them in the CLI)
 - [x] ~Create custom taks in SBT to run tests in specific app-layers~
 - [x] ~How to set environment variables like Hosts, port for Redis?, for each environment...scala-env~
 - [x] ~Execute test in infrastructure subproject in serie instead of in parallel~
@@ -50,7 +48,6 @@
 
 ### with project
 - [ ] Add license file
-- [ ] Add badge icon
 
 
 
