@@ -28,10 +28,9 @@
 - [x] ~Create transformer Code->Auth (this will be a domain service)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
-- [ ] Design Register/login of a user :fire:
-- [ ] Design Register/login of a third :fire:
+- [ ] :fire: Design Register/login of a user (infrastructure layer) :fire:
+- [ ] :fire: Design Register/login of a third (infrastructure layer) :fire:
 - [ ] Start Application layer
-- [ ] Investigate how to handle user-session
 - [x] ~BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)~
 
 ### with sbt
@@ -73,7 +72,7 @@ docker-compose run service_scala sbt test
 Run specific suite test:
 
 ```
-docker-compose run service_scala /bin/bash
+docker-compose exec -it service_sbt_scala /bin/bash
         > sbt domain/test
         > sbt infrastructure/test
         > sbt learning/test

@@ -1,3 +1,9 @@
+data_db:
+  container_name: data_volume_db
+  image: mysql:5.7
+  volumes_from:
+    - service_db
+
 service_db:
   container_name: container_db
   image: mysql:5.7
