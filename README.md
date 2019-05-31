@@ -9,15 +9,13 @@
 - [x] ~Spin up a docker with mysql and a database~
 - [x] ~Figure out how to run still travis with docker in order to pass all the test in CI~
 - [x] ~Link containers Scala-db-redis~
-- [x] ~Set environmental variables for configuration~
-- [ ] :fire: Manage to switch database-container when running tests (this will define better the environment, versions...) 
-- [ ] :fire: Put database in volume-host
+- [x] ~Set environmental variables for configuration~ 
+- [ ] :fire: Put database in volume-host (bind volume)
 - [x] ~Investigate docker logs & events: sbt-docker-compose, testcontainers-scala, docker-it-scala~
  
 
-### Fix: 
-- [x] ~updateCallbackUrl() is used in Third. It should belong to thirdadpp.~
-- [ ] Problem with database pool connection
+### Fix:
+ 
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
@@ -40,17 +38,12 @@
 - [x] ~Track dependencies: https://www.scala-sbt.org/0.13/docs/Organizing-Build.html~
 - [x] ~Use common settings~
 - [x] ~Create subprojects for Domain and infrastructure~
-- [ ] How to tag tests? (and filter them in the CLI)
 - [x] ~Create custom taks in SBT to run tests in specific app-layers~
 - [x] ~How to set environment variables like Hosts, port for Redis?, for each environment...scala-env~
 - [x] ~Execute test in infrastructure subproject in serie instead of in parallel~
 
-### With general coding concepts:
-- [x] ~Investigate if I should refactor to use Actors~
-
 ### with project
 - [ ] Add license file
-- [ ] Add badge icon
 
 
 
