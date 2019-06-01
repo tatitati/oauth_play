@@ -5,21 +5,32 @@ data_db:
     - service_db
 
 service_db:
-  container_name: container_db
   image: mysql:5.7
+  container_name: container_db
+  ports:
+#    To debug mysql from the host
+    - "3306:3306"
   environment:
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     - MYSQL_DATABASE=play_db
 
 service_redis:
-  container_name: container_redis
   image: redis
+  container_name: container_redis
 
-service_scala:
-  container_name: container_scala_sbt
-  image: bigtruedata/sbt
-  links:
-    - service_db
-    - service_redis
-  volumes:
-    - ".:/app"
+
+#Problem:
+#I dont want to do this because this container is running an sbt command, so everytime I go into it and I run sbt test, I have
+#two sbt process competing, producing an ivy.lock file.
+
+  #service_scala:
+  #  image: bigtruedata/sbt
+  #  container_name: container_scala_sbt
+  #  links:
+  #    - service_db
+  #    - service_redis
+  #  volumes:
+  #    - ".:/app"
+
+#Solution:
+#  docker run -it --link container_db:service_db --link container_redis:service_redis -v /Users/tati/Desktop/scala_lab/play_oauth:/app bigtruedata/sbt /bin/bash
