@@ -20,6 +20,15 @@
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
 
+### With Play
+
+
+### With Slick
+- [x] ~Find out how to execute plain sql queries~
+- [ ] Own pool of connections
+- [ ] Understand thread pools vs connection pools difference
+
+
 ### with code
 - [x] ~Investigate how to hash a password with sha-256 + salt~
 - [x] ~Add unique keys for domain ids~
