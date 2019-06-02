@@ -1,4 +1,4 @@
-package infrastructure.persistence
+package infrastructure.test.persistence
 
 import slick.dbio.DBIO
 import slick.jdbc.JdbcProfile

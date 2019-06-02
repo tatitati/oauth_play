@@ -1,14 +1,13 @@
 package infrastructure.test.persistence.user
 
-import infrastructure.Connection
-import infrastructure.persistence.Exec
+import infrastructure.test.persistence.Exec
 import infrastructure.persistence.user.UserSchema
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.meta.MTable
 import slick.lifted.TableQuery
 
-class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
+class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val ownerSchema = TableQuery[UserSchema]
 
   test("database forconfig type is:") {
@@ -28,5 +27,9 @@ class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   override def beforeEach() {
     exec(ownerSchema.schema.dropIfExists)
     exec(ownerSchema.schema.create)
+  }
+
+  override def afterAll() = {
+    dbConnection.close()
   }
 }

@@ -1,6 +1,5 @@
-package infrastructure
+package infrastructure.test.persistence
 
-import infrastructure.persistence.Exec
 import infrastructure.persistence.auth.AuthSchema
 import org.scalatest.{BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._

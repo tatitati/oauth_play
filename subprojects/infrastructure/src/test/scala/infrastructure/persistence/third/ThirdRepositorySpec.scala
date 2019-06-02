@@ -1,15 +1,14 @@
 package infrastructure.test.persistence.third
 
 import domain.model.third.Third
-import infrastructure.persistence.Exec
+import infrastructure.test.persistence.Exec
 import infrastructure.persistence.third.{ThirdPersistentModel, ThirdRepository, ThirdSchema}
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
 
-class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with Exec {
+class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val thirdSchema = TableQuery[ThirdSchema]
-  implicit val db = Database.forConfig("mydb")
 
   test("I can insert a new third") {
     ThirdRepository.save(
@@ -47,5 +46,9 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with Exec {
   override def beforeEach() {
     exec(thirdSchema.schema.dropIfExists)
     exec(thirdSchema.schema.create)
+  }
+
+  override def afterAll() = {
+    dbConnection.close()
   }
 }

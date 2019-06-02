@@ -32,5 +32,8 @@ service_scala:
   volumes:
     - ".:/app"
 
-#Solution:
+#Solutions:
+
+  # docker-comopse run service_scala /bin/bash
+
 #  docker run -it --link container_db:service_db --link container_redis:service_redis -v /Users/tati/Desktop/scala_lab/play_oauth:/app bigtruedata/sbt /bin/bash

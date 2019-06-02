@@ -1,14 +1,13 @@
 package infrastructure.test.persistence.thirdapp
 
-import infrastructure.Connection
-import infrastructure.persistence.Exec
+import infrastructure.test.persistence.Exec
 import infrastructure.persistence.thirdapp.ThirdappSchema
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.meta.MTable
 import slick.lifted.TableQuery
 
-class ThirdappSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
+class ThirdappSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val thirdappSchema = TableQuery[ThirdappSchema]
 
   test("database forconfig type is:") {
@@ -28,6 +27,10 @@ class ThirdappSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   override def beforeEach() {
     exec(thirdappSchema.schema.dropIfExists)
     exec(thirdappSchema.schema.create)
+  }
+
+  override def afterAll() = {
+    dbConnection.close()
   }
 }
 

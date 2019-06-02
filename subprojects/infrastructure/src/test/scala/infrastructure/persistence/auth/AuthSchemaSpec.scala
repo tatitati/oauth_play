@@ -1,7 +1,6 @@
 package infrastructure.test.persistence.auth
 
-import infrastructure.Connection
-import infrastructure.persistence.Exec
+import infrastructure.test.persistence.Exec
 import infrastructure.persistence.auth.AuthSchema
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
@@ -28,6 +27,10 @@ class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfte
   override def beforeEach() {
     exec(authSchema.schema.dropIfExists)
     exec(authSchema.schema.create)
+  }
+
+  override def afterAll() = {
+    dbConnection.close()
   }
 }
 

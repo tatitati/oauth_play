@@ -1,4 +1,4 @@
-package infrastructure
+package iinfrastructure.test.persistence
 
 import com.redis.RedisClient
 import com.typesafe.config.{Config, ConfigFactory}

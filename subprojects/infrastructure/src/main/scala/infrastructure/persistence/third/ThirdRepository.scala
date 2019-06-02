@@ -1,21 +1,23 @@
 package infrastructure.persistence.third
 
 import domain.model.third.Third
-import infrastructure.persistence.Exec
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
+import scala.concurrent.Await
+import scala.concurrent.duration._
 
-object ThirdRepository extends Exec {
+object ThirdRepository {
 
   val thirdSchema = TableQuery[ThirdSchema]
   implicit val db = Database.forConfig("mydb")
 
   def save(persistentModel: ThirdPersistentModel): Unit = {
-    exec(thirdSchema += persistentModel)
+    db.run(thirdSchema += persistentModel)
   }
 
   def read(byname: String): Third = {
-    val rows = exec(thirdSchema.filter(_.name === byname).result)
+    val future = db.run(thirdSchema.filter(_.name === byname).result)
+    val rows = Await.result(future, 2.seconds)
 
     val thirdPersisted = rows.head
 
