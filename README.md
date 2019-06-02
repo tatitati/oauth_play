@@ -26,7 +26,7 @@
 ### With Slick
 - [x] ~Find out how to execute plain sql queries~
 - [ ] Own pool of connections
-- [ ] Understand thread pools vs connection pools difference
+- [ ] Understand thread pools vs connection pools difference, also minThreads/maxThreads, and queueSize
 
 
 ### with code
