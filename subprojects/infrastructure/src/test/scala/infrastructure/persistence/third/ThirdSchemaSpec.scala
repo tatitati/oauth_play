@@ -10,7 +10,6 @@ import slick.lifted.TableQuery
 
 class ThirdSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
   val thirdSchema = TableQuery[ThirdSchema]
-  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("database forconfig type is:") {
     assert(dbConnection.isInstanceOf[Database])

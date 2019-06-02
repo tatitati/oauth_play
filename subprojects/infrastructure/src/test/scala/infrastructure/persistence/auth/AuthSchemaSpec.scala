@@ -3,14 +3,13 @@ package infrastructure.test.persistence.auth
 import infrastructure.Connection
 import infrastructure.persistence.Exec
 import infrastructure.persistence.auth.AuthSchema
-import org.scalatest.{BeforeAndAfterEach, FunSuite}
+import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.meta.MTable
 import slick.lifted.TableQuery
 
-class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with Exec {
+class AuthSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val authSchema = TableQuery[AuthSchema]
-  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("database forconfig type is:") {
     assert(dbConnection.isInstanceOf[Database])
