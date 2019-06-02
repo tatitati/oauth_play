@@ -85,7 +85,8 @@ Run specific suite test:
 
 
 ```
-docker attach container_scala_sbt
+// [docker exec container_scala_sbt sbt test] just create another sbt process, which create .lock files
+docker attach container_scala_sbt.  
         sbt:> domain/test
         sbt:> infrastructure/test
         sbt:> learning/test
