@@ -15,13 +15,15 @@ val thirdDependencies = Seq(
   "com.github.nscala-time" %% "nscala-time" % "2.20.0",
   "com.typesafe.play" %% "play-json" % "2.6.10",
 
-  // redis
+  // redis + mysql
   "net.debasishg" %% "redisclient" % "3.9",
+  "mysql" % "mysql-connector-java" % "5.1.21",
+
   // slick
   "com.typesafe.slick" %% "slick" % "3.3.0",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
+  // db pool
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.0",
-  "mysql" % "mysql-connector-java" % "5.1.21",
 
   // dev
   "org.scalatest" %% "scalatest" % "3.0.5" % Test,

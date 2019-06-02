@@ -11,7 +11,8 @@ class PlainSqlSpec extends FunSuite with BeforeAndAfterEach with Exec {
   implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   test("Can run plain sql queries") {
-    println("running.....")
+
+
     val action = sql"""SHOW STATUS WHERE `variable_name` = 'Threads_connected'""".as[(String, Int)].head
     val result = exec(action)
     dbConnection.close()
