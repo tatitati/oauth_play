@@ -16,6 +16,7 @@ class MapperToPersistentSpec extends FunSuite {
     assert(thenPersistence.isInstanceOf[UserPersistentModel], "Should be an instance of OwnerProfile")
     assert(thenPersistence.datebirth.dayOfMonth().get() === 10, "day month birth should match")
     assert(thenPersistence.datebirth.year().get() === 1900, "year birth should match")
+    assert(thenPersistence.datebirth.toString() === "whatever")
   }
 
   test("Surrogate id is also mapped properly to persistence") {

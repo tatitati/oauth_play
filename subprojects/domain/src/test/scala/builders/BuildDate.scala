@@ -25,4 +25,15 @@ object BuildDate {
   def inPast(): DateTime = {
     DateTime.now.withYear(2000).withMonth(8).withDay(20)
   }
+
+  def specificMoment(): DateTime = {
+    DateTime.now
+      .withYear(2030)
+      .withMonth(8)
+      .withDay(20)
+      .withHourOfDay(10)
+      .withMinute(2)
+      .withSecond(20)
+      .withMillisOfSecond(833)
+  }
 }

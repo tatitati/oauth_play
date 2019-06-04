@@ -8,12 +8,15 @@ class ParsingSpec extends FunSuite {
   test("Parse string to DateTime") {
     val parsed1 = DateTime.parse("2030-02-20T13:08:20.400+01:00")
     val parsed2 = DateTime.parse("2030-02")
+    val parsed3 = DateTimeFormat.forPattern("Y-MM-dd H:mm:s").parseDateTime("2030-08-20 10:02:20")
 
     assert(parsed1.isInstanceOf[DateTime])
     assert(parsed2.isInstanceOf[DateTime])
+    assert(parsed3.isInstanceOf[DateTime])
 
     assert(parsed1.toString() === "2030-02-20T13:08:20.400+01:00")
     assert(parsed2.toString() === "2030-02-01T00:00:00.000Z")
+    assert(parsed3.toString() === "2030-08-20T10:02:20.000Z")
   }
 
   test("Parse string with a custom formatter") {
