@@ -15,7 +15,7 @@
  
 
 ### Fix:
- 
+- Third repository has to save an Aggregate, no a persistent model :fire::fire:
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
