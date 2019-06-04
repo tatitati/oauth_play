@@ -10,7 +10,7 @@
 - [x] ~Figure out how to run still travis with docker in order to pass all the test in CI~
 - [x] ~Link containers Scala-db-redis~
 - [x] ~Set environmental variables for configuration~ 
-- [ ] :fire: Put database in volume-host (bind volume)
+- [x] ~Put database in volume-host (bind volume)~
 - [x] ~Investigate docker logs & events: sbt-docker-compose, testcontainers-scala, docker-it-scala~
  
 
