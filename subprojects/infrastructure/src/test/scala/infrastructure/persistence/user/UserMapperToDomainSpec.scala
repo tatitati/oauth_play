@@ -5,7 +5,7 @@ import infrastructure.persistence.user.UserMapper
 import org.joda.time.DateTime
 import org.scalatest.FunSuite
 
-class MapperToDomainSpec extends FunSuite {
+class UserMapperToDomainSpec extends FunSuite {
 
   test("Fields are mapped to domain") {
 
