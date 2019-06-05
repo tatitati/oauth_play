@@ -74,14 +74,7 @@ docker-compose up
 
 # Instructions
 
-```
-docker attach container_scala_sbt
-   sbt:> test
-```
-
 Run specific suite test:
-
-
 
 
 ```
