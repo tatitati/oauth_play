@@ -26,7 +26,6 @@ service_redis:
 service_scala:
   image: bigtruedata/sbt
   container_name: container_scala_sbt
-  mem_limit: 1600m
   links:
     - service_db
     - service_redis
