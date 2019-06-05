@@ -1,26 +1,33 @@
 package infrastructure.persistence.third
 
-import domain.model.third.Third
+import domain.model.third.{Third, ThirdId}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
-import scala.concurrent.Await
 import scala.concurrent.duration._
+import scala.concurrent.Await
 
 object ThirdRepository {
-
   val thirdSchema = TableQuery[ThirdSchema]
-  implicit val db = Database.forConfig("mydb")
+  implicit val dbConnection = Database.forConfig("mydb")
 
-  def save(persistentModel: ThirdPersistentModel): Unit = {
-    db.run(thirdSchema += persistentModel)
+  def save(third: Third): Unit = {
+    val persistentModel = ThirdMapper.toPersistent(third)
+    dbConnection.run(thirdSchema += persistentModel)
   }
 
-  def read(byname: String): Third = {
-    val future = db.run(thirdSchema.filter(_.name === byname).result)
+  def findById(thirdId: ThirdId): Option[Third] = {
+    val future = dbConnection.run(thirdSchema.filter(_.thirdId === thirdId.toString()).result)
     val rows = Await.result(future, 2.seconds)
 
-    val thirdPersisted = rows.head
+    rows.length match {
+      case 0 => None
+      case _ => {
+        val thirdPersisted = rows.head
 
-    ThirdMapper.toDomain(thirdPersisted)
+        val third = ThirdMapper.toDomain(thirdPersisted)
+        Some(third)
+      }
+    }
+
   }
 }

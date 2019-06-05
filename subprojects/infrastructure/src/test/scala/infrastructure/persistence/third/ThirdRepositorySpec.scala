@@ -6,15 +6,15 @@ import infrastructure.persistence.third.{ThirdPersistentModel, ThirdRepository, 
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
+import domain.model.third.Third
+import test.domain.model.third.{BuildThird, BuildThirdId}
 
 class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val thirdSchema = TableQuery[ThirdSchema]
 
   test("I can insert a new third") {
     ThirdRepository.save(
-      BuildThirdPersistentModel.anyNoPersisted(
-        withName = "my row"
-      )
+      BuildThird.any()
     )
 
     val rows = exec(thirdSchema.result)
@@ -22,8 +22,6 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
     assert(rows.size === 1)
     assert(rows.isInstanceOf[Vector[_]])
     assert(rows.head.isInstanceOf[ThirdPersistentModel])
-    assert(rows.head.name === "my row")
-    assert(rows.head.surrogateId.isInstanceOf[Some[_]])
   }
 
   test("I understand how to filter") {
@@ -31,16 +29,23 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
     assert(query === "select `id`, `thirdid`, `name`, `description` from `third` where `name` = 'something'")
   }
 
-  test("Read return a third aggregate") {
+  test("Read return a Some[third] aggregate on reading an existing Third") {
+    val thirdId = BuildThirdId.any()
     ThirdRepository.save(
-      BuildThirdPersistentModel.anyNoPersisted(withName = "my row")
+      BuildThird.any(withId = thirdId)
     )
 
-    val third = ThirdRepository.read(byname = "my row")
+    val third = ThirdRepository.findById(thirdId = thirdId)
 
-    assert(third.isInstanceOf[Third])
-    assert(third.getProfile.name === "my row")
-    assert(third.getSurrogateId().isInstanceOf[Some[_]])
+    assert(third.isInstanceOf[Some[Third]])
+  }
+
+  test("Read return a Some[third] aggregate on reading a no existing Third") {
+    val thirdId = BuildThirdId.any()
+
+    val third = ThirdRepository.findById(thirdId = thirdId)
+
+    assert(third === None)
   }
 
   override def beforeEach() {
