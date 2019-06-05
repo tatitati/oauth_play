@@ -7,9 +7,9 @@ data_db:
 service_db:
   image: mysql:5.7
   container_name: container_db
-#  ports:
-#    #    To debug mysql from the host
-#    - "3306:3306"
+  ports:
+    #    To debug mysql from the host
+    - "3306:3306"
   environment:
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     - MYSQL_DATABASE=play_db
@@ -26,6 +26,7 @@ service_redis:
 service_scala:
   image: bigtruedata/sbt
   container_name: container_scala_sbt
+  mem_limit: 1600m
   links:
     - service_db
     - service_redis
