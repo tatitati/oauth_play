@@ -48,6 +48,25 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
     assert(third === None)
   }
 
+  test("exist return true on checking an existing third") {
+    val thirdId = BuildThirdId.any()
+    ThirdRepository.save(
+      BuildThird.any(withId = thirdId)
+    )
+
+    val exist = ThirdRepository.exist(thirdId = thirdId)
+
+    assert(exist === true)
+  }
+
+  test("exist return false on checking a non existing third") {
+    val thirdId = BuildThirdId.any()
+
+    val exist = ThirdRepository.exist(thirdId = thirdId)
+
+    assert(exist === false)
+  }
+
   override def beforeEach() {
     exec(thirdSchema.schema.dropIfExists)
     exec(thirdSchema.schema.create)

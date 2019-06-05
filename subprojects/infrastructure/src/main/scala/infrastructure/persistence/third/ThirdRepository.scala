@@ -28,6 +28,10 @@ object ThirdRepository {
         Some(third)
       }
     }
+  }
 
+  def exist(thirdId: ThirdId): Boolean = {
+    val future = dbConnection.run(thirdSchema.filter(_.thirdId === thirdId.toString()).exists.result)
+    Await.result(future, 2.seconds)
   }
 }
