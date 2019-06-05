@@ -17,7 +17,7 @@ class UserRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAnd
         withSurrogateId = None
       )
     )
-    
+
     val rows = exec(userSchema.result)
 
     assert(rows.size === 1)
@@ -25,7 +25,7 @@ class UserRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAnd
     assert(rows.head.isInstanceOf[UserPersistentModel])
   }
 
-  test("Can read a User") {
+  test("Return Some[User] when finding an existing user") {
     UserRepository.save(
       BuildUser.any(
         withSurrogateId = None,
