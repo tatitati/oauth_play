@@ -7,6 +7,7 @@ import slick.lifted.TableQuery
 
 class PoolConnectionSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   test("Can run plain sql queries") {
+
     val action = sql"""SHOW STATUS WHERE `variable_name` = 'Threads_connected'""".as[(String, Int)].head
     val result = exec(action)
     println(result)
