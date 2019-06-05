@@ -1,13 +1,15 @@
 package infrastructure.test.persistence
 
+import infrastructure.Connection
 import slick.dbio.DBIO
 import slick.jdbc.JdbcProfile
+
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import slick.jdbc.MySQLProfile.api._
 
 trait Exec {
-  implicit val dbConnection =Database.forConfig("mydb")
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   def exec[T](action: DBIO[T])(implicit db: JdbcProfile#Backend#Database): T =
   {

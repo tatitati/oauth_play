@@ -17,7 +17,7 @@ class UserRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAnd
         withSurrogateId = None
       )
     )
-
+    
     val rows = exec(userSchema.result)
 
     assert(rows.size === 1)
