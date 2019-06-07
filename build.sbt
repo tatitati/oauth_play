@@ -20,14 +20,16 @@ val thirdDependencies = Seq(
   "mysql" % "mysql-connector-java" % "5.1.21",
 
   // slick
-  "com.typesafe.slick" %% "slick" % "3.3.0",
+  "com.typesafe.play" %% "play-slick" % "3.0.0",
+  //"com.typesafe.slick" %% "slick" % "3.3.0",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
   // db pool
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.0",
 
   // dev
   "org.scalatest" %% "scalatest" % "3.0.5" % Test,
-  "org.specs2" %% "specs2-core" % "4.3.4" % Test
+  "org.specs2" %% "specs2-core" % "4.3.4" % Test,
+  jdbc % Test
 )
 
 scalacOptions in Test ++= Seq("-Yrangepos")
