@@ -20,8 +20,8 @@ val thirdDependencies = Seq(
   "mysql" % "mysql-connector-java" % "5.1.21",
 
   // slick
-  "com.typesafe.play" %% "play-slick" % "3.0.0",
-  //"com.typesafe.slick" %% "slick" % "3.3.0",
+//  "com.typesafe.play" %% "play-slick" % "3.0.0",
+  "com.typesafe.slick" %% "slick" % "3.3.0",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
   // db pool
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.0",

@@ -1,6 +1,7 @@
 package infrastructure.persistence.user
 
 import domain.model.user.User
+import infrastructure.persistence.Connection
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
 import scala.concurrent.duration._
@@ -8,7 +9,7 @@ import scala.concurrent.Await
 
 object UserRepository {
   val userSchema = TableQuery[UserSchema]
-  implicit val dbConnection = Database.forConfig("mydb")
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   def save(user: User): Unit = {
     val userPersistent = UserMapper.toPersistent(user)

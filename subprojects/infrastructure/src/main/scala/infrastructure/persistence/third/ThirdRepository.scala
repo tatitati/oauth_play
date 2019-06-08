@@ -1,6 +1,7 @@
 package infrastructure.persistence.third
 
 import domain.model.third.{Third, ThirdId}
+import infrastructure.persistence.Connection
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
 import scala.concurrent.duration._
@@ -8,7 +9,7 @@ import scala.concurrent.Await
 
 object ThirdRepository {
   val thirdSchema = TableQuery[ThirdSchema]
-  implicit val dbConnection = Database.forConfig("mydb")
+  implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   def save(third: Third): Unit = {
     val persistentModel = ThirdMapper.toPersistent(third)

@@ -8,8 +8,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration._
 import slick.jdbc.MySQLProfile.api._
 
-trait Exec {
-  implicit val dbConnection = Connection.getSingletonConnection("mydb")
+trait Exec1 {
 
   def exec[T](action: DBIO[T])(implicit db: JdbcProfile#Backend#Database): T =
   {
