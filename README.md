@@ -15,7 +15,7 @@
  
 
 ### Fix:
-- Third repository has to save an Aggregate, no a persistent model :fire::fire:
+-[x] ~Third repository has to save an Aggregate, no a persistent model~
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
@@ -25,22 +25,21 @@
 
 ### With Slick
 - [x] ~Find out how to execute plain sql queries~
+- [x] ~Find out how to update fields, datetimes, etc~
 - [ ] Own pool of connections
-- [ ] Understand thread pools vs connection pools difference, also minThreads/maxThreads, and queueSize
 
 
 ### with code
-- [ ] Add toString for main items
-- [ ] Figure out how to update an item in db
-- [ ] Return surrogate id on insert
+- [ ] Add toString for main items :fire:
+- [ ] Return surrogate id on insert?
 - [x] ~Investigate how to hash a password with sha-256 + salt~
 - [x] ~Add unique keys for domain ids~
 - [x] ~Add registered date (also needed for hashing+salt in password~
-- [ ] Simplify builders and isolation of them, unnaply() might help?
+- [ ] Simplify builders and isolation of them, unnaply() might help? :fire:
 - [x] ~Create transformer Code->Auth (this will be a domain service)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
-- [ ] :fire: Design Register/login of a user (infrastructure layer) :fire:
+- [ ] :fire: Design Register/login of a user (infrastructure layer) :fire::fire::fire:
 - [ ] :fire: Design Register/login of a third (infrastructure layer) :fire:
 - [ ] Start Application layer
 - [x] ~BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)~
