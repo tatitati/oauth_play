@@ -8,7 +8,7 @@ import domain.model.thirdapp.ThirdappId
 import domain.model.auth.{Auth, AuthId, AuthToken}
 import domain.model.user.UserId
 
-object MapCodeToAuth {
+object TranslatorCodeToAuth {
   def toAuth(code: Code): Auth = {
     new Auth(
       authId = AuthId(UUID.randomUUID()),
