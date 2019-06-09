@@ -16,7 +16,7 @@ case class UserPersistentModel(
     s"""
       |UserPersistentModel
       |===================
-      |   id: ${println(id)}
+      |   id: ${id.toString}
       |   firstname: $firstname,
       |   surname: $surname,
       |   datebirth: ${datebirth.toString},

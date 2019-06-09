@@ -1,7 +1,6 @@
 package domain.model.user
 
 import domain.model.IdentifiableInPersistence
-import domain.model.user._
 import com.github.nscala_time.time.Imports.DateTime
 
 class User(

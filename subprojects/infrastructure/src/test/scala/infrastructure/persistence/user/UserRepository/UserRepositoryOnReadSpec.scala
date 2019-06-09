@@ -1,7 +1,7 @@
 package infrastructure.test.persistence.user.UserRepository
 
 import domain.model.user.User
-import infrastructure.persistence.user.{UserRepository, UserSchema}
+import infrastructure.persistence.user.{UserPersistentModel, UserRepository, UserSchema}
 import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
