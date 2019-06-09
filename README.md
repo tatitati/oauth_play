@@ -19,6 +19,8 @@
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
+- [ ] Study For comprehesions (for slick)
+- [ ] Simplify builders and isolation of them, unnaply() might help?
 
 ### With Play
 
@@ -36,7 +38,6 @@
 - [x] ~Investigate how to hash a password with sha-256 + salt~
 - [x] ~Add unique keys for domain ids~
 - [x] ~Add registered date (also needed for hashing+salt in password~
-- [ ] Simplify builders and isolation of them, unnaply() might help? :fire:
 - [x] ~Create transformer Code->Auth (this will be a domain service)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
