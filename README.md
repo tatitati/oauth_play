@@ -32,6 +32,7 @@
 ### with code
 - [ ] Add toString for main items :fire:
 - [ ] Return surrogate id on insert?
+- [ ] Model Credentials(HASH) for user and third :fire::fire::fire:
 - [x] ~Investigate how to hash a password with sha-256 + salt~
 - [x] ~Add unique keys for domain ids~
 - [x] ~Add registered date (also needed for hashing+salt in password~
@@ -39,8 +40,8 @@
 - [x] ~Create transformer Code->Auth (this will be a domain service)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
-- [ ] :fire: Design Register/login of a user (infrastructure layer) :fire::fire::fire:
-- [ ] :fire: Design Register/login of a third (infrastructure layer) :fire:
+- [ ] Design Register/login of a user (infrastructure layer) :fire::fire::fire:
+- [ ] Design Register/login of a third (infrastructure layer) :fire:
 - [ ] Start Application layer
 - [x] ~BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)~
 
