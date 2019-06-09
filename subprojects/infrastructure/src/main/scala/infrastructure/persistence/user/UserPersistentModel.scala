@@ -11,4 +11,21 @@ case class UserPersistentModel(
   isEmailConfirmed: Boolean,
   email: String,
   hashPassword: String
-)
+) {
+  override def toString(): String = {
+    s"""
+      |UserPersistentModel
+      |===================
+      |   id: ${println(id)}
+      |   firstname: $firstname,
+      |   surname: $surname,
+      |   datebirth: ${datebirth.toString},
+      |   registeredDateTime: ${registeredDateTime.toString},
+      |   isEmailConfirmed: ${isEmailConfirmed.toString},
+      |   email: $email,
+      |   hashPassword: $hashPassword
+    """.stripMargin
+  }
+}
+
+

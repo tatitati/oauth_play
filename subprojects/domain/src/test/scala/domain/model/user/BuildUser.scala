@@ -29,4 +29,21 @@ object BuildUser {
 
       user
     }
+
+  def anyNoPersisted(
+           withId: UserId = BuildUserId.any(),
+           withProfile: UserProfile = BuildUserProfile.any(),
+           withRegisteredDateTime: DateTime = BuildDate.any(),
+           withEmailConfirmed: Boolean = Faker.boolean(),
+           withUserCredentials: UserCredentials = BuildUserCredentials.any()
+         ):User  = {
+    this.any(
+      withSurrogateId = None,
+      withId,
+      withProfile,
+      withRegisteredDateTime,
+      withEmailConfirmed,
+      withUserCredentials
+    )
+  }
 }

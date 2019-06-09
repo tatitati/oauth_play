@@ -6,4 +6,13 @@ case class UserProfile(
     val firstname: String,
     val surname: String,
     val datebirth: DateTime
-)
+) {
+  override def toString(): String = {
+    s"""
+      |Profile:
+      |   firstname: $firstname,
+      |   surname: $surname,
+      |   dateBirth: ${datebirth.toString()},
+    """.stripMargin
+  }
+}

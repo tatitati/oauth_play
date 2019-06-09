@@ -28,7 +28,8 @@ val thirdDependencies = Seq(
 
   // dev
   "org.scalatest" %% "scalatest" % "3.0.5" % Test,
-  "org.specs2" %% "specs2-core" % "4.3.4" % Test
+  "org.specs2" %% "specs2-core" % "4.3.4" % Test,
+//  jdbc % Test
 )
 
 scalacOptions in Test ++= Seq("-Yrangepos")
