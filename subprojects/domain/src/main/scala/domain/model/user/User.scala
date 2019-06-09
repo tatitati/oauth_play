@@ -42,4 +42,15 @@ class User(
     profile.copy(datebirth = datebirth)
     this
   }
+
+  override def toString(): String = {
+    s"""
+       |User
+       |====
+       |   registeredDateTime: ${registeredDateTime.toString}
+       |   emailConfirmed: ${emailConfirmed.toString()}
+       |   profile: ${profile.toString()}
+       |   credentials: ${credentials.toString()}
+    """.stripMargin
+  }
 }

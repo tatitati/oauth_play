@@ -9,11 +9,9 @@ case class UserProfile(
 ) {
   override def toString(): String = {
     s"""
-      |UserProfile
-      |===========
-      |   firstname: $firstname,
-      |   surname: $surname,
-      |   dateBirth: ${datebirth.toString()},
+      |       firstname: $firstname
+      |       surname: $surname
+      |       dateBirth: ${datebirth.toString()}
     """.stripMargin
   }
 }
