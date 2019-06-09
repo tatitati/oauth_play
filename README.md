@@ -30,6 +30,9 @@
 
 
 ### with code
+- [ ] Add toString for main items
+- [ ] Figure out how to update an item in db
+- [ ] Return surrogate id on insert
 - [x] ~Investigate how to hash a password with sha-256 + salt~
 - [x] ~Add unique keys for domain ids~
 - [x] ~Add registered date (also needed for hashing+salt in password~
