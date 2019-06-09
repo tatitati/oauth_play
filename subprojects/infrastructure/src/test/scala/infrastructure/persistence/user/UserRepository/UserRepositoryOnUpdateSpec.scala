@@ -1,127 +1,40 @@
 package infrastructure.test.persistence.user.UserRepository
 
-import com.github.nscala_time.time.Imports.DateTime
-import infrastructure.persistence.user.UserRepository
 import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
+import infrastructure.persistence.user.{UserRepository, UserSchema}
 import test.domain.model.user.{BuildUser, BuildUserCredentials, BuildUserProfile}
-import infrastructure.persistence.user.UserSchema
-import test.domain.builders.BuildDate
-import com.github.nscala_time.time.Imports.DateTime
 
 class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
-
-
   val userSchema = TableQuery[UserSchema]
 
-  test("Understand how to update one field in Slick") {
-    UserRepository.save(
-      BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail")
-      )
-    )
+  test("Can update some fields of user") {
+    val user1 = UserRepository.findByEmail("email1").get
 
-    val query = for {
-      userSchema <- userSchema
-      if userSchema.firstname === "francisco"
-    } yield userSchema.firstname
+    user1.updateFirstname("manolo")
+    user1.updateSurname("gonzalez")
 
-    assert(query.isInstanceOf[Rep[_]])
+    UserRepository.update(user1)
 
-    val updateAction = query.update("paco")
-    assert(query.updateStatement === "update `user` set `firstname` = ? where `user`.`firstname` = 'francisco'")
-    exec(updateAction)
+    val user2 = UserRepository.findByEmail("email1").get
+
+    assert(user2.getProfile.firstname === "manolo")
+    assert(user2.getProfile.surname === "gonzalez")
   }
 
-  test("I can update a datetime field") {
-    import infrastructure.persistence.CustomDateTimeToTimestamp._
-
-    UserRepository.save(
-      BuildUser.anyNoPersisted(
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail"),
-        withProfile = BuildUserProfile.any(
-          withFirstname = "francisco",
-          withDatebirth = BuildDate.specificMoment()
-        )
-      )
-    )
-
-    val query = for {
-      userSchema <- userSchema
-      if userSchema.firstname === "francisco"
-    } yield userSchema.datebirth
-
-    val newDatebirth =  DateTime.now.withYear(2444)
-    val updateAction = query.update(newDatebirth)
-
-    assert(query.updateStatement === "update `user` set `datebirth` = ? where `user`.`firstname` = 'francisco'")
-  }
-
-  test("I know how to update multiple fields in slick") {
-    UserRepository.save(
-      BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail")
-      )
-    )
-
-    val q = userSchema
-      .filter(_.firstname === "francisco")
-      .map(
-        user => (
-          user.firstname,
-          user.surname
-    ))
-
-    val updateAction = q.update("paco", "jimenez")
-    assert(q.updateStatement === "update `user` set `firstname` = ?, `surname` = ? where `user`.`firstname` = 'francisco'")
-  }
-
-  test("I know how to update any (multiple or not) fields in slick") {
-    import infrastructure.persistence.CustomDateTimeToTimestamp._
-
-    UserRepository.save(
-      BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail")
-      )
-    )
-
-    val persistedUser = exec(userSchema.result).head
-
-    val q = userSchema
-      .filter(_.id === persistedUser.id)
-      .map(
-        user => (
-          user.firstname,
-          user.surname,
-          user.datebirth,
-          user.registeredDateTime,
-          user.emailconfirmed,
-          user.email,
-          user.hashPassword
-        )
-      )
-
-    val updateAction = q.update(
-      persistedUser.firstname,
-      "Gonzalez",
-      persistedUser.datebirth,
-      persistedUser.registeredDateTime,
-      persistedUser.isEmailConfirmed,
-      persistedUser.email,
-      persistedUser.hashPassword
-    )
-
-    assert(q.updateStatement === "update `user` set `firstname` = ?, `surname` = ?, `datebirth` = ?, `registered_datetime` = ?, `email_confirmed` = ?, `email` = ?, `hashpassword` = ? where `user`.`id` = 1")
-  }
 
   override def beforeEach() {
     exec(userSchema.schema.dropIfExists)
     exec(userSchema.schema.create)
+
+    UserRepository.save(
+      BuildUser.anyNoPersisted(
+        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
+        withUserCredentials = BuildUserCredentials.any(withEmail = "email1")
+      )
+    )
   }
 
   override def afterAll() = {

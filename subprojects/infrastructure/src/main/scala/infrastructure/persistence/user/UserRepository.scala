@@ -30,6 +30,37 @@ object UserRepository {
     }
   }
 
+  def update(user: User) = {
+
+    import infrastructure.persistence.CustomDateTimeToTimestamp._
+
+    val persistentUser = UserMapper.toPersistent(user)
+
+    val q = userSchema
+      .filter(_.id === persistentUser.id)
+      .map(
+        user => (
+          user.firstname,
+          user.surname,
+          user.datebirth,
+          user.emailconfirmed,
+          user.email,
+          user.hashPassword
+        )
+      )
+
+    val updateAction = q.update(
+      persistentUser.firstname,
+      persistentUser.surname,
+      persistentUser.datebirth,
+      persistentUser.isEmailConfirmed,
+      persistentUser.email,
+      persistentUser.hashPassword
+    )
+
+    dbConnection.run(updateAction)
+  }
+
   def existByEmail(email: String): Boolean = {
     val future = dbConnection.run(userSchema.filter(_.email === email).exists.result)
     Await.result(future, 2.seconds)
