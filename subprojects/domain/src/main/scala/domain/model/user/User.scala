@@ -17,24 +17,29 @@ class User(
   def getProfile: UserProfile = profile
   def getCredentials(): UserCredentials = credentials
 
-  def updateFirstname(firstname: String): Unit = {
+  def updateFirstname(firstname: String): User = {
     profile = profile.copy(firstname = firstname)
+    this
   }
 
-  def updateSurname(surname: String): Unit = {
+  def updateSurname(surname: String): User = {
     profile = profile.copy(surname = surname)
+    this
   }
 
-  def updateEmail(email: String): Unit = {
+  def updateEmail(email: String): User = {
     credentials = credentials.copy(email = email)
     emailConfirmed = false
+    this
   }
 
-  def confirmEmail(): Unit = {
+  def confirmEmail(): User = {
     emailConfirmed = true
+    this
   }
 
-  def setDatebirth(datebirth: DateTime): Unit = {
+  def setDatebirth(datebirth: DateTime): User = {
     profile.copy(datebirth = datebirth)
+    this
   }
 }

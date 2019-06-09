@@ -7,7 +7,7 @@ import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
 import test.domain.model.user.{BuildUser, BuildUserCredentials}
 
-class UserRepositoryOnCheckSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
+class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
 
   test("Return false on checking by email a non-existing user") {
@@ -24,8 +24,8 @@ class UserRepositoryOnCheckSpec extends FunSuite with BeforeAndAfterEach with Be
       )
     )
 
-    val user = UserRepository.existByEmail("anyemail")
-    assert(user === true)
+    val userExists = UserRepository.existByEmail("anyemail")
+    assert(userExists === true)
   }
 
   override def beforeEach() {

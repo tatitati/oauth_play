@@ -13,8 +13,9 @@ class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with B
   test("Can update some fields of user") {
     val user1 = UserRepository.findByEmail("email1").get
 
-    user1.updateFirstname("manolo")
-    user1.updateSurname("gonzalez")
+    user1
+      .updateFirstname("manolo")
+      .updateSurname("gonzalez")
 
     UserRepository.update(user1)
 
@@ -23,8 +24,7 @@ class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with B
     assert(user2.getProfile.firstname === "manolo")
     assert(user2.getProfile.surname === "gonzalez")
   }
-
-
+  
   override def beforeEach() {
     exec(userSchema.schema.dropIfExists)
     exec(userSchema.schema.create)
