@@ -9,21 +9,24 @@ object BuildUserProfile {
   def any(
            withFirstname: String =  Faker.text(),
            withSurname: String = Faker.text(),
-           withDatebirth: DateTime = BuildDate.any()
+           withDatebirth: DateTime = BuildDate.any(),
+           withEmail: String = Faker.text()
          ): UserProfile = {
 
-    new UserProfile(
+    UserProfile(
       firstname = withFirstname,
       surname = withSurname,
-      datebirth = withDatebirth
+      datebirth = withDatebirth,
+      email = withEmail
     )
   }
 
   def specific(): UserProfile = {
-    new UserProfile(
+    UserProfile(
       firstname = "firstname",
       surname = "surname",
-      datebirth = new DateTime("1900-03-10")
+      datebirth = new DateTime("1900-03-10"),
+      email = "oneemail@domain.com"
     )
   }
 }

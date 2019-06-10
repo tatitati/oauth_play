@@ -11,11 +11,21 @@ class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with B
   val userSchema = TableQuery[UserSchema]
 
   test("Can update some fields of user") {
+    UserRepository.save(
+      BuildUser.anyNoPersisted(
+        withProfile = BuildUserProfile.any(
+          withFirstname = "francisco",
+          withEmail = "email1"
+        )
+      )
+    )
+
     val user1 = UserRepository.findByEmail("email1").get
 
     user1
       .updateFirstname("manolo")
       .updateSurname("gonzalez")
+
 
     UserRepository.update(user1)
 
@@ -28,13 +38,6 @@ class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with B
   override def beforeEach() {
     exec(userSchema.schema.dropIfExists)
     exec(userSchema.schema.create)
-
-    UserRepository.save(
-      BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "email1")
-      )
-    )
   }
 
   override def afterAll() = {

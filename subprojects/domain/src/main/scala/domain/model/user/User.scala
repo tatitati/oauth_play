@@ -28,7 +28,7 @@ class User(
   }
 
   def updateEmail(email: String): User = {
-    credentials = credentials.copy(email = email)
+    profile = profile.copy(email = email)
     emailConfirmed = false
     this
   }

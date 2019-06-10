@@ -10,7 +10,8 @@ object UserMapper {
         profile = UserProfile(
           firstname = fromPersistent.firstname,
           surname = fromPersistent.surname,
-          datebirth = fromPersistent.datebirth
+          datebirth = fromPersistent.datebirth,
+          email = fromPersistent.email
         ),
         registeredDateTime = fromPersistent.registeredDateTime,
         emailConfirmed = fromPersistent.isEmailConfirmed,
@@ -36,7 +37,7 @@ object UserMapper {
       datebirth = user.getProfile.datebirth,
       registeredDateTime = user.registeredDateTime,
       isEmailConfirmed = user.isEmailConfirmed(),
-      email = user.getCredentials().email,
+      email = user.getProfile.email,
       hashPassword = user.getCredentials().hashPassword
     )
   }

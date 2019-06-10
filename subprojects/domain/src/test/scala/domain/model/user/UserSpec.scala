@@ -26,9 +26,15 @@ class UserSpec extends FunSuite {
       withProfile = BuildUserProfile.specific()
     )
 
-    assert(owner.getProfile.firstname === "firstname")
-    owner.updateFirstname("new firstname")
-    assert(owner.getProfile.firstname === "new firstname")
+    assert(owner.getProfile.firstname === "firstname", "the original firstname should be 'firstname'")
+    assert(owner.getProfile.email === "oneemail@domain.com", "the original email should be 'oneemail@domain.com'")
+
+    owner
+      .updateFirstname("new firstname")
+      .updateEmail("new_email@newdomain.com")
+
+    assert(owner.getProfile.firstname === "new firstname", "After updating firstname should be new_firstname")
+    assert(owner.getProfile.email === "new_email@newdomain.com", "After updating email should be new_email@newdomain.com")
   }
 
   test("Set confirmed email to false after updating email") {
