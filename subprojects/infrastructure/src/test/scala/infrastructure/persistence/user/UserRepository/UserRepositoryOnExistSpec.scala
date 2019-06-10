@@ -5,7 +5,7 @@ import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
-import test.domain.model.user.{BuildUser, BuildUserCredentials}
+import test.domain.model.user.{BuildUser, BuildUserCredentials, BuildUserProfile}
 
 class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
@@ -18,7 +18,7 @@ class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with Be
   test("Return true on checking an existing user") {
     UserRepository.save(
       BuildUser.anyNoPersisted(
-        withUserCredentials = BuildUserCredentials.any(
+        withProfile = BuildUserProfile.any(
           withEmail = "anyemail"
         )
       )

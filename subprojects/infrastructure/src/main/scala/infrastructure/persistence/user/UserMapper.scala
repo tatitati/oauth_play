@@ -16,7 +16,6 @@ object UserMapper {
         registeredDateTime = fromPersistent.registeredDateTime,
         emailConfirmed = fromPersistent.isEmailConfirmed,
         credentials = UserCredentials(
-          email = fromPersistent.email,
           hashPassword = fromPersistent.hashPassword
         )
     )

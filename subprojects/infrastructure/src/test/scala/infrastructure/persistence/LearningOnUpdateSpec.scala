@@ -17,8 +17,10 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   test("Understand how to update one field in Slick") {
     UserRepository.save(
       BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail")
+        withProfile = BuildUserProfile.any(
+          withFirstname = "francisco",
+          withEmail = "anyemail"
+        )
       )
     )
 
@@ -39,10 +41,10 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
 
     UserRepository.save(
       BuildUser.anyNoPersisted(
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail"),
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
-          withDatebirth = BuildDate.specificMoment()
+          withDatebirth = BuildDate.specificMoment(),
+          withEmail = "anyemail"
         )
       )
     )
@@ -61,8 +63,10 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   test("I know how to update multiple fields in slick") {
     UserRepository.save(
       BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail")
+        withProfile = BuildUserProfile.any(
+          withFirstname = "francisco",
+          withEmail = "anyemail"
+        ),
       )
     )
 
@@ -83,8 +87,10 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
 
     UserRepository.save(
       BuildUser.anyNoPersisted(
-        withProfile = BuildUserProfile.any(withFirstname = "francisco"),
-        withUserCredentials = BuildUserCredentials.any(withEmail = "anyemail")
+        withProfile = BuildUserProfile.any(
+          withFirstname = "francisco",
+          withEmail = "anyemail"
+        ),
       )
     )
 

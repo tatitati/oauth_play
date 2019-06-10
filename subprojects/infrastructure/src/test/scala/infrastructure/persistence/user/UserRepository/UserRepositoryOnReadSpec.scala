@@ -6,7 +6,7 @@ import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
-import test.domain.model.user.{BuildUser, BuildUserCredentials}
+import test.domain.model.user.{BuildUser, BuildUserCredentials, BuildUserProfile}
 
 class UserRepositoryOnReadSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
@@ -14,7 +14,7 @@ class UserRepositoryOnReadSpec extends FunSuite with BeforeAndAfterEach with Bef
   test("Return Some[User] when finding an existing user") {
     UserRepository.save(
       BuildUser.anyNoPersisted(
-        withUserCredentials = BuildUserCredentials.any(
+        withProfile = BuildUserProfile.any(
           withEmail = "anyemail"
         )
       )
@@ -23,7 +23,7 @@ class UserRepositoryOnReadSpec extends FunSuite with BeforeAndAfterEach with Bef
     val user = UserRepository.findByEmail("anyemail")
 
     assert(user.isInstanceOf[Some[User]])
-    assert(user.get.getCredentials().email === "anyemail")
+    assert(user.get.getProfile.email === "anyemail")
   }
 
   test("Return None on Read if user is not found") {
