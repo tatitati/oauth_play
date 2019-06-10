@@ -4,59 +4,42 @@
 
 # Todo:
 
-### with Docker:
-- [x] ~add redis and mysql in container (this will define better the environment, versions...)~
-- [x] ~Spin up a docker with mysql and a database~
-- [x] ~Figure out how to run still travis with docker in order to pass all the test in CI~
-- [x] ~Link containers Scala-db-redis~
-- [x] ~Set environmental variables for configuration~ 
-- [x] ~Put database in volume-host (bind volume)~
-- [x] ~Investigate docker logs & events: sbt-docker-compose, testcontainers-scala, docker-it-scala~
- 
-
 ### Fix:
--[x] ~Third repository has to save an Aggregate, no a persistent model~
+
+
+### with Docker: 
+
+### with project
+- [ ] Add license file
+
+### with sbt
+
 
 ### with scala
 - [ ] Investigate default values in case classes. Behaviour is not as I was expecting
-- [ ] Study For comprehesions (for slick)
-- [ ] Simplify builders and isolation of them, unnaply() might help?
 
 ### With Play
 
 
 ### With Slick
-- [x] ~Find out how to execute plain sql queries~
-- [x] ~Find out how to update fields, datetimes, etc~
 - [ ] Own pool of connections
 
 
-### with code
-- [ ] Add toString for main items :fire:
+### with application
+- [ ] Add toString for main items
 - [ ] Return surrogate id on insert?
-- [ ] Model Credentials(HASH) for user and third :fire::fire::fire:
+- [ ] Simplify builders and isolation of them, unnaply() might help?
+- [ ] Define/model concept of Credentials(HASH) for user and third :fire:
+- [ ] Define/model concept of Hash :fire:
 - [x] ~Investigate how to hash a password with sha-256 + salt~
-- [x] ~Add unique keys for domain ids~
-- [x] ~Add registered date (also needed for hashing+salt in password~
-- [x] ~Create transformer Code->Auth (this will be a domain service)~
+- [x] ~Add registered date (also needed for hashing+salt in password)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
-- [ ] Design Register/login of a user (infrastructure layer) :fire::fire::fire:
-- [ ] Design Register/login of a third (infrastructure layer) :fire:
-- [ ] Start Application layer
-- [x] ~BuildDate, BuildUUID, Faker, duplicated in domain and root project, they should be only in root (if possible)~
+- [ ] Design Register/login of a user (infrastructure layer) :fire:
+- [ ] Design Register/login of a third (infrastructure layer)
 
-### with sbt
-- [x] ~Track dependencies: https://www.scala-sbt.org/0.13/docs/Organizing-Build.html~
-- [x] ~Use common settings~
-- [x] ~Create subprojects for Domain and infrastructure~
-- [x] ~Create custom taks in SBT to run tests in specific app-layers~
-- [x] ~How to set environment variables like Hosts, port for Redis?, for each environment...scala-env~
-- [x] ~Execute test in infrastructure subproject in serie instead of in parallel~
 
-### with project
-- [ ] Add license file
-
+----
 
 
 
