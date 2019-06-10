@@ -7,8 +7,28 @@ import com.github.nscala_time.time.Imports.DateTime
 import test.domain.builders.{BuildDate, Faker}
 
 object BuildUser {
-    def any(
-             withSurrogateId: Option[Long] =  BuildSurrogateId.any(),
+
+  // no persisted = just registered
+  def anyNoPersisted(
+                      withHashCredentials: String =  Faker.text(),
+                      withId: UserId = BuildUserId.any(),
+                      withProfile: UserProfile = BuildUserProfile.any(),
+                      withRegisteredDateTime: DateTime = BuildDate.any(),
+                    ):User  = {
+    val user = new User(
+      withId,
+      withProfile,
+      withRegisteredDateTime,
+      emailConfirmed = false
+    )
+
+    user.setHashcredentials(withHashCredentials)
+    user
+  }
+
+    def anyPersisted(
+             withSurrogateId: Option[Long] =  BuildSurrogateId.anyPersisted(),
+             withHashCredentials: String =  Faker.text(),
              withId: UserId = BuildUserId.any(),
              withProfile: UserProfile = BuildUserProfile.any(),
              withRegisteredDateTime: DateTime = BuildDate.any(),
@@ -21,25 +41,8 @@ object BuildUser {
         withEmailConfirmed
       )
 
-      if(withSurrogateId != None) {
-        user.setSurrogateId(withSurrogateId)
-      }
-
+      user.setSurrogateId(withSurrogateId)
+      user.setHashcredentials(withHashCredentials)
       user
     }
-
-  def anyNoPersisted(
-           withId: UserId = BuildUserId.any(),
-           withProfile: UserProfile = BuildUserProfile.any(),
-           withRegisteredDateTime: DateTime = BuildDate.any(),
-           withEmailConfirmed: Boolean = Faker.boolean()
-         ):User  = {
-    this.any(
-      withSurrogateId = None,
-      withId,
-      withProfile,
-      withRegisteredDateTime,
-      withEmailConfirmed
-    )
-  }
 }

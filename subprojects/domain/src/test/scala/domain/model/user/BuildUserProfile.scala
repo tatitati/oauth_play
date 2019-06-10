@@ -21,20 +21,11 @@ object BuildUserProfile {
     )
   }
 
-  def specific1(): UserProfile = {
+  def anySpecific(): UserProfile = {
     UserProfile(
       firstname = "firstname",
       surname = "surname",
       datebirth = Some(new DateTime("1900-03-10")),
-      email = "oneemail@domain.com"
-    )
-  }
-
-  def specific2(): UserProfile = {
-    UserProfile(
-      firstname = "firstname",
-      surname = "surname",
-      datebirth = None,
       email = "oneemail@domain.com"
     )
   }

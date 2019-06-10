@@ -5,25 +5,25 @@ import org.scalatest.FunSuite
 class UserSpec extends FunSuite {
 
   test("Can compare two owners") {
-    val owner1 = BuildUser.any(
+    val user1 = BuildUser.anyPersisted(
       withId = BuildUserId.any(withValue = "email1")
     )
 
-    val owner2 = BuildUser.any(
+    val user2 = BuildUser.anyPersisted(
       withId = BuildUserId.any(withValue = "email2")
     )
 
-    val owner3 = BuildUser.any(
+    val user3 = BuildUser.anyPersisted(
       withId = BuildUserId.any(withValue = "email2")
     )
 
-    assert(owner1.equals(owner2) === false)
-    assert(owner2.equals(owner3) === true)
+    assert(user1.equals(user2) === false)
+    assert(user2.equals(user3) === true)
   }
 
   test("Can edit profile") {
-    val owner = BuildUser.any(
-      withProfile = BuildUserProfile.specific1()
+    val owner = BuildUser.anyPersisted(
+      withProfile = BuildUserProfile.anySpecific()
     )
 
     assert(owner.getProfile.firstname === "firstname", "the original firstname should be 'firstname'")
@@ -38,8 +38,8 @@ class UserSpec extends FunSuite {
   }
 
   test("Can edit dateBirth") {
-    val owner = BuildUser.any(
-      withProfile = BuildUserProfile.specific1()
+    val owner = BuildUser.anyPersisted(
+      withProfile = BuildUserProfile.anySpecific()
     )
 
     assert(owner.getProfile.datebirth.isInstanceOf[Some[_]])
@@ -50,7 +50,7 @@ class UserSpec extends FunSuite {
   }
 
   test("Set confirmed email to false after updating email") {
-    val owner = BuildUser.any(
+    val owner = BuildUser.anyPersisted(
       withProfile = BuildUserProfile.any(
         withEmail = "myemail"
       ),
@@ -60,5 +60,13 @@ class UserSpec extends FunSuite {
     owner.updateEmail("any new email")
 
     assert(owner.isEmailConfirmed() === false)
+  }
+
+  test("I can set a hash credential in the user") {
+    val user = BuildUser.anyNoPersisted(
+      withHashCredentials = "myhashcredentials"
+    )
+
+    assert(user.getHashcredentials() === "myhashcredentials")
   }
 }

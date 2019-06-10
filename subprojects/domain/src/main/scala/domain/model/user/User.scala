@@ -1,6 +1,6 @@
 package domain.model.user
 
-import domain.model.IdentifiableInPersistence
+import domain.model.{SurrogateIdInPersistence, IdentifiableInPersistence}
 import com.github.nscala_time.time.Imports.DateTime
 
 class User(
@@ -8,9 +8,9 @@ class User(
             private var profile: UserProfile,
             val registeredDateTime: DateTime,
             private var emailConfirmed: Boolean,
-   ) extends IdentifiableInPersistence {
+   ) extends IdentifiableInPersistence with SurrogateIdInPersistence {
 
-  def equals(owner: User): Boolean = id.equals(owner.id)
+  def equals(toUser: User): Boolean = id.equals(toUser.id)
 
   def isEmailConfirmed(): Boolean = emailConfirmed
   def getProfile: UserProfile = profile
@@ -45,6 +45,8 @@ class User(
     s"""
        |User
        |====
+       |   surrogateID: ${getSurrogateId()}
+       |   hashCredentials: ${getHashcredentials()}
        |   registeredDateTime: ${registeredDateTime.toString}
        |   emailConfirmed: ${emailConfirmed.toString()}
        |   profile: ${profile.toString()}
