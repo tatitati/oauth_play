@@ -12,15 +12,13 @@ object BuildUser {
              withId: UserId = BuildUserId.any(),
              withProfile: UserProfile = BuildUserProfile.any(),
              withRegisteredDateTime: DateTime = BuildDate.any(),
-             withEmailConfirmed: Boolean = Faker.boolean(),
-             withUserCredentials: UserCredentials = BuildUserCredentials.any()
+             withEmailConfirmed: Boolean = Faker.boolean()
            ):User  = {
       val user = new User(
         withId,
         withProfile,
         withRegisteredDateTime,
-        withEmailConfirmed,
-        withUserCredentials
+        withEmailConfirmed
       )
 
       if(withSurrogateId != None) {
@@ -34,16 +32,14 @@ object BuildUser {
            withId: UserId = BuildUserId.any(),
            withProfile: UserProfile = BuildUserProfile.any(),
            withRegisteredDateTime: DateTime = BuildDate.any(),
-           withEmailConfirmed: Boolean = Faker.boolean(),
-           withUserCredentials: UserCredentials = BuildUserCredentials.any()
+           withEmailConfirmed: Boolean = Faker.boolean()
          ):User  = {
     this.any(
       withSurrogateId = None,
       withId,
       withProfile,
       withRegisteredDateTime,
-      withEmailConfirmed,
-      withUserCredentials
+      withEmailConfirmed
     )
   }
 }

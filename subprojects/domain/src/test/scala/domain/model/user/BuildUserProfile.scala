@@ -9,7 +9,7 @@ object BuildUserProfile {
   def any(
            withFirstname: String =  Faker.text(),
            withSurname: String = Faker.text(),
-           withDatebirth: DateTime = BuildDate.any(),
+           withDatebirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
            withEmail: String = Faker.text()
          ): UserProfile = {
 
@@ -21,11 +21,20 @@ object BuildUserProfile {
     )
   }
 
-  def specific(): UserProfile = {
+  def specific1(): UserProfile = {
     UserProfile(
       firstname = "firstname",
       surname = "surname",
-      datebirth = new DateTime("1900-03-10"),
+      datebirth = Some(new DateTime("1900-03-10")),
+      email = "oneemail@domain.com"
+    )
+  }
+
+  def specific2(): UserProfile = {
+    UserProfile(
+      firstname = "firstname",
+      surname = "surname",
+      datebirth = None,
       email = "oneemail@domain.com"
     )
   }

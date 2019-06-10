@@ -8,14 +8,12 @@ class User(
             private var profile: UserProfile,
             val registeredDateTime: DateTime,
             private var emailConfirmed: Boolean,
-            private var credentials: UserCredentials
    ) extends IdentifiableInPersistence {
 
   def equals(owner: User): Boolean = id.equals(owner.id)
 
   def isEmailConfirmed(): Boolean = emailConfirmed
   def getProfile: UserProfile = profile
-  def getCredentials(): UserCredentials = credentials
 
   def updateFirstname(firstname: String): User = {
     profile = profile.copy(firstname = firstname)
@@ -33,13 +31,13 @@ class User(
     this
   }
 
-  def confirmEmail(): User = {
-    emailConfirmed = true
+  def updateDateBirth(datebirth: Option[DateTime]): User = {
+    profile = profile.copy(datebirth = datebirth)
     this
   }
 
-  def setDatebirth(datebirth: DateTime): User = {
-    profile.copy(datebirth = datebirth)
+  def confirmEmail(): User = {
+    emailConfirmed = true
     this
   }
 
@@ -50,7 +48,6 @@ class User(
        |   registeredDateTime: ${registeredDateTime.toString}
        |   emailConfirmed: ${emailConfirmed.toString()}
        |   profile: ${profile.toString()}
-       |   credentials: ${credentials.toString()}
     """.stripMargin
   }
 }

@@ -8,7 +8,7 @@ class UserMapperToPersistentSpec extends FunSuite {
 
   test("Domain is mapped to persistence") {
     val givenDomain = BuildUser.any(
-      withProfile = BuildUserProfile.specific()
+      withProfile = BuildUserProfile.specific1()
     )
     val thenPersistence = UserMapper.toPersistent(givenDomain)
 

@@ -23,7 +23,7 @@ class UserSpec extends FunSuite {
 
   test("Can edit profile") {
     val owner = BuildUser.any(
-      withProfile = BuildUserProfile.specific()
+      withProfile = BuildUserProfile.specific1()
     )
 
     assert(owner.getProfile.firstname === "firstname", "the original firstname should be 'firstname'")
@@ -35,6 +35,18 @@ class UserSpec extends FunSuite {
 
     assert(owner.getProfile.firstname === "new firstname", "After updating firstname should be new_firstname")
     assert(owner.getProfile.email === "new_email@newdomain.com", "After updating email should be new_email@newdomain.com")
+  }
+
+  test("Can edit dateBirth") {
+    val owner = BuildUser.any(
+      withProfile = BuildUserProfile.specific1()
+    )
+
+    assert(owner.getProfile.datebirth.isInstanceOf[Some[_]])
+
+    owner.updateDateBirth(datebirth = None)
+
+    assert(owner.getProfile.datebirth === None)
   }
 
   test("Set confirmed email to false after updating email") {
