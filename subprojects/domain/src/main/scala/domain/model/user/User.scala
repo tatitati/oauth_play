@@ -1,19 +1,23 @@
 package domain.model.user
 
-import domain.model.{SurrogateIdInPersistence, IdentifiableInPersistence}
+import domain.model.IdentifiableInPersistence
 import com.github.nscala_time.time.Imports.DateTime
 
 class User(
-            val id: UserId, // is not the email as the user can change the email
             private var profile: UserProfile,
-            val registeredDateTime: DateTime,
-            private var emailConfirmed: Boolean,
-   ) extends IdentifiableInPersistence with SurrogateIdInPersistence {
+            private var account: UserAccount
+   ) extends IdentifiableInPersistence {
 
-  def equals(toUser: User): Boolean = id.equals(toUser.id)
+  def getUserId: UserId = {
+    UserId(account.email)
+  }
 
-  def isEmailConfirmed(): Boolean = emailConfirmed
+  def equals(toUser: User): Boolean = {
+    account.email.equals(toUser.account.email)
+  }
+
   def getProfile: UserProfile = profile
+  def getAccount: UserAccount = account
 
   def updateFirstname(firstname: String): User = {
     profile = profile.copy(firstname = firstname)
@@ -26,8 +30,7 @@ class User(
   }
 
   def updateEmail(email: String): User = {
-    profile = profile.copy(email = email)
-    emailConfirmed = false
+    account = account.copy(email = email, emailConfirmed = false)
     this
   }
 
@@ -36,8 +39,10 @@ class User(
     this
   }
 
+  def isEmailConfirmed(): Boolean = account.emailConfirmed
+
   def confirmEmail(): User = {
-    emailConfirmed = true
+    account = account.copy(emailConfirmed = true)
     this
   }
 
@@ -46,9 +51,7 @@ class User(
        |User
        |====
        |   surrogateID: ${getSurrogateId()}
-       |   hashCredentials: ${getHashcredentials()}
-       |   registeredDateTime: ${registeredDateTime.toString}
-       |   emailConfirmed: ${emailConfirmed.toString()}
+       |   account: ${account.toString()}
        |   profile: ${profile.toString()}
     """.stripMargin
   }

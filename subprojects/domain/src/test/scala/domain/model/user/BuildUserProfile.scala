@@ -10,14 +10,12 @@ object BuildUserProfile {
            withFirstname: String =  Faker.text(),
            withSurname: String = Faker.text(),
            withDatebirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
-           withEmail: String = Faker.text()
          ): UserProfile = {
 
     UserProfile(
       firstname = withFirstname,
       surname = withSurname,
       datebirth = withDatebirth,
-      email = withEmail
     )
   }
 
@@ -25,8 +23,7 @@ object BuildUserProfile {
     UserProfile(
       firstname = "firstname",
       surname = "surname",
-      datebirth = Some(new DateTime("1900-03-10")),
-      email = "oneemail@domain.com"
+      datebirth = Some(new DateTime("1900-03-10"))
     )
   }
 }
