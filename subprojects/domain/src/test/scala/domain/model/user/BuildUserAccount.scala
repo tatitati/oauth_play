@@ -6,7 +6,7 @@ import test.domain.builders.{BuildDate, Faker}
 
 object BuildUserAccount {
   def any(
-           withEmail: String =  Faker.text(),
+           withUsername: String =  Faker.text(),
            withSalt: String = Faker.text(),
            withHashedPassword: String = Faker.text(),
            withEmailConfirmed: Boolean = Faker.boolean(),
@@ -14,7 +14,7 @@ object BuildUserAccount {
          ): UserAccount = {
 
     UserAccount(
-      withEmail,
+      withUsername,
       withSalt,
       withHashedPassword,
       withEmailConfirmed,
@@ -24,7 +24,7 @@ object BuildUserAccount {
 
   def anySpecific(): UserAccount = {
     UserAccount(
-      "anyemail@whatever.com",
+      "one_user_name",
       salt = "aabbcc12344",
       hashedPassword = "123456789=-=-=-==-=",
       emailConfirmed = true,

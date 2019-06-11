@@ -4,22 +4,22 @@ import org.scalatest.FunSuite
 
 class UserSpec extends FunSuite {
 
-  test("Can compare two owners") {
+  test("Can compare users") {
     val user1 = BuildUser.any(
       withUserAccount = BuildUserAccount.any(
-        withEmail = "email1"
+        withUsername = "user_name_1"
       )
     )
 
     val user2 = BuildUser.any(
       withUserAccount = BuildUserAccount.any(
-        withEmail = "email2"
+        withUsername = "user_name_2"
       )
     )
 
     val user3 = BuildUser.any(
       withUserAccount = BuildUserAccount.any(
-        withEmail = "email2"
+        withUsername = "user_name_2"
       )
     )
 
@@ -52,8 +52,10 @@ class UserSpec extends FunSuite {
   test("Set confirmed email to false after updating email") {
     val user = BuildUser.anyPersisted(
       withUserAccount = BuildUserAccount.any(
-        withEmail = "myemail",
         withEmailConfirmed = true
+      ),
+      withProfile = BuildUserProfile.any(
+        withEmail = "anyemail@whatever.com"
       )
     )
 

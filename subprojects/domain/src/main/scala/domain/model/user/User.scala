@@ -9,11 +9,11 @@ class User(
    ) extends IdentifiableInPersistence {
 
   def getUserId: UserId = {
-    UserId(account.email)
+    UserId(account.username)
   }
 
   def equals(toUser: User): Boolean = {
-    account.email.equals(toUser.account.email)
+    account.username.equals(toUser.account.username)
   }
 
   def getProfile: UserProfile = profile
@@ -30,7 +30,8 @@ class User(
   }
 
   def updateEmail(email: String): User = {
-    account = account.copy(email = email, emailConfirmed = false)
+    profile = profile.copy(email = email)
+    account = account.copy(emailConfirmed = false)
     this
   }
 

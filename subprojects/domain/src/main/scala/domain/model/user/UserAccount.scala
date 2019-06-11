@@ -3,7 +3,7 @@ package domain.model.user
 import com.github.nscala_time.time.Imports.DateTime
 
 case class UserAccount (
-  val email: String,
+  val username: String,
   val salt: String,
   val hashedPassword: String,
   val emailConfirmed: Boolean,
@@ -12,7 +12,7 @@ case class UserAccount (
   override def toString(): String = {
     s"""
        |  UserAccount
-       |       email: $email
+       |       username: $username
        |       salt: $salt
        |       hashedPassword: $hashedPassword
        |       emailConfirmed: $emailConfirmed
