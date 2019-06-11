@@ -5,7 +5,7 @@ import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
-import test.domain.model.user.{BuildUser, BuildUserCredentials, BuildUserProfile}
+import test.domain.model.user.{BuildUser, BuildUserProfile}
 import infrastructure.persistence.user.UserSchema
 import test.domain.builders.BuildDate
 import com.github.nscala_time.time.Imports.DateTime
@@ -43,7 +43,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
-          withDatebirth = BuildDate.specificMoment(),
+          withDatebirth = Some(BuildDate.specificMoment()),
           withEmail = "anyemail"
         )
       )
@@ -55,7 +55,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
     } yield userSchema.datebirth
 
     val newDatebirth =  DateTime.now.withYear(2444)
-    val updateAction = query.update(newDatebirth)
+    val updateAction = query.update(Some(newDatebirth))
 
     assert(query.updateStatement === "update `user` set `datebirth` = ? where `user`.`firstname` = 'francisco'")
   }
@@ -117,7 +117,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
       persistedUser.registeredDateTime,
       persistedUser.isEmailConfirmed,
       persistedUser.email,
-      persistedUser.hashPassword
+      persistedUser.hashAuthentication
     )
 
     assert(q.updateStatement === "update `user` set `firstname` = ?, `surname` = ?, `datebirth` = ?, `registered_datetime` = ?, `email_confirmed` = ?, `email` = ?, `hashpassword` = ? where `user`.`id` = 1")

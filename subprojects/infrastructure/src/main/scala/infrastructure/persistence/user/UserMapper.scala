@@ -1,6 +1,6 @@
 package infrastructure.persistence.user
 
-import domain.model.user.{User, UserCredentials, UserId, UserProfile}
+import domain.model.user.{User, UserId, UserProfile}
 
 object UserMapper {
 
@@ -14,11 +14,10 @@ object UserMapper {
           email = fromPersistent.email
         ),
         registeredDateTime = fromPersistent.registeredDateTime,
-        emailConfirmed = fromPersistent.isEmailConfirmed,
-        credentials = UserCredentials(
-          hashPassword = fromPersistent.hashPassword
-        )
+        emailConfirmed = fromPersistent.isEmailConfirmed
     )
+
+    domain.setHashcredentials(fromPersistent.hashAuthentication)
 
     fromPersistent.id match {
       case None => throw new IllegalArgumentException("A persisted UserPersistentModel is expected to have a surrogate id in order to be mapped to domain")
@@ -37,7 +36,7 @@ object UserMapper {
       registeredDateTime = user.registeredDateTime,
       isEmailConfirmed = user.isEmailConfirmed(),
       email = user.getProfile.email,
-      hashPassword = user.getCredentials().hashPassword
+      hashAuthentication = user.getHashcredentials()
     )
   }
 }

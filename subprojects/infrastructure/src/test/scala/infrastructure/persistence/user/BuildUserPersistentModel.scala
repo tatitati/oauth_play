@@ -11,11 +11,11 @@ object BuildUserPersistentModel {
            withSurrogateId: Option[Long] =  BuildSurrogateId.any(),
            withFirstname: String = Faker.text(),
            withSurname: String = Faker.text(),
-           withDateBirth: DateTime = BuildDate.any(),
+           withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
            withRegisteredDateTime: DateTime = BuildDate.any(),
            withIsEmailConfirmed: Boolean = Faker.boolean(),
            withEmail: String = Faker.text(),
-           withHashPassword: String = Faker.text()
+           withHashAuthentication: String = Faker.text(),
          ): UserPersistentModel = {
     UserPersistentModel(
       withSurrogateId,
@@ -25,20 +25,20 @@ object BuildUserPersistentModel {
       withRegisteredDateTime,
       withIsEmailConfirmed,
       withEmail,
-      withHashPassword
+      withHashAuthentication
     )
   }
 
   def anyPersisted(
-                    withSurrogateId: Option[Long] =  BuildSurrogateId.anyPersisted(),
-                    withFirstname: String = Faker.text(),
-                    withSurname: String = Faker.text(),
-                    withDateBirth: DateTime = BuildDate.any(),
-                    withRegisteredDateTime: DateTime = BuildDate.any(),
-                    withIsEmailConfirmed: Boolean = Faker.boolean(),
-                    withEmail: String = Faker.text(),
-                    withHashPassword: String = Faker.text()
-                  ): UserPersistentModel = {
+          withSurrogateId: Option[Long] =  BuildSurrogateId.anyPersisted(),
+          withFirstname: String = Faker.text(),
+          withSurname: String = Faker.text(),
+          withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
+          withRegisteredDateTime: DateTime = BuildDate.any(),
+          withIsEmailConfirmed: Boolean = Faker.boolean(),
+          withEmail: String = Faker.text(),
+          withHashAuthentication: String = Faker.text(),
+        ): UserPersistentModel = {
     UserPersistentModel(
       withSurrogateId,
       withFirstname,
@@ -47,19 +47,19 @@ object BuildUserPersistentModel {
       withRegisteredDateTime,
       withIsEmailConfirmed,
       withEmail,
-      withHashPassword
+      withHashAuthentication
     )
   }
 
   def anyNoPersisted(
-                      withFirstname: String = Faker.text(),
-                      withSurname: String = Faker.text(),
-                      withDateBirth: DateTime = BuildDate.any(),
-                      withRegisteredDateTime: DateTime = BuildDate.any(),
-                      withIsEmailConfirmed: Boolean = Faker.boolean(),
-                      withEmail: String = Faker.text(),
-                      withHashPassword: String = Faker.text()
-                    ): UserPersistentModel = {
+          withFirstname: String = Faker.text(),
+          withSurname: String = Faker.text(),
+          withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
+          withRegisteredDateTime: DateTime = BuildDate.any(),
+          withIsEmailConfirmed: Boolean = Faker.boolean(),
+          withEmail: String = Faker.text(),
+          withHashAuthentication: String = Faker.text(),
+        ): UserPersistentModel = {
     UserPersistentModel(
       None,
       withFirstname,
@@ -68,7 +68,7 @@ object BuildUserPersistentModel {
       withRegisteredDateTime,
       withIsEmailConfirmed,
       withEmail,
-      withHashPassword
+      withHashAuthentication
     )
   }
 }

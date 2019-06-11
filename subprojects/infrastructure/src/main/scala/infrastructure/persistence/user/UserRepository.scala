@@ -44,8 +44,7 @@ object UserRepository {
           user.surname,
           user.datebirth,
           user.emailconfirmed,
-          user.email,
-          user.hashPassword
+          user.email
         )
       )
 
@@ -55,7 +54,6 @@ object UserRepository {
       persistentUser.datebirth,
       persistentUser.isEmailConfirmed,
       persistentUser.email,
-      persistentUser.hashPassword
     )
 
     dbConnection.run(updateAction)

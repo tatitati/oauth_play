@@ -9,12 +9,14 @@ class UserMapperToDomainSpec extends FunSuite {
 
   test("Fields are mapped to domain") {
 
+    val dateBirth = (new DateTime)
+      .withYear(2016)
+      .withDayOfMonth(1)
+
     val givenPersistent = BuildUserPersistentModel.anyPersisted(
       withFirstname = "any firstname",
       withEmail = "one_email",
-      withDateBirth = (new DateTime)
-        .withYear(2016)
-        .withDayOfMonth(1)
+      withDateBirth = Some(dateBirth)
     )
 
     val thenDomain = UserMapper.toDomain(givenPersistent)
@@ -22,8 +24,8 @@ class UserMapperToDomainSpec extends FunSuite {
     assert(thenDomain.isInstanceOf[User], "Should be an instance of OwnerProfile")
     assert(thenDomain.id.value === "one_email", "email should match")
     assert(thenDomain.getProfile.firstname === "any firstname", "email should match")
-    assert(thenDomain.getProfile.datebirth.dayOfMonth().get() === 1, "day month birth should match")
-    assert(thenDomain.getProfile.datebirth.year().get() === 2016, "year birth should match")
+    assert(thenDomain.getProfile.datebirth.get.dayOfMonth().get() === 1, "day month birth should match")
+    assert(thenDomain.getProfile.datebirth.get.year().get() === 2016, "year birth should match")
   }
 
   test("Surrogate id is also mapped properly to domain") {

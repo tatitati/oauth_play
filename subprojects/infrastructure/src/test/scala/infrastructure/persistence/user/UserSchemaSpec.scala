@@ -23,7 +23,7 @@ class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfte
 
   test("Can save one owner profile persistence model including some dates") {
     val persistentModel = BuildUserPersistentModel.anyNoPersisted(
-      withDateBirth = BuildDate.specificMoment()
+      withDateBirth = Some(BuildDate.specificMoment())
     )
 
     assert(persistentModel.datebirth.toString() === "2030-08-20T10:02:20.833Z")
@@ -33,7 +33,7 @@ class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfte
   test("I can receive a persistent model from a db user") {
     // insert
     val persistentModel = BuildUserPersistentModel.anyNoPersisted(
-      withDateBirth = BuildDate.specificMoment()
+      withDateBirth = Some(BuildDate.specificMoment())
     )
     exec(userSchema += persistentModel)
 

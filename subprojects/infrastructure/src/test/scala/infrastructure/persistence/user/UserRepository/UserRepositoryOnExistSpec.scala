@@ -5,7 +5,7 @@ import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
-import test.domain.model.user.{BuildUser, BuildUserCredentials, BuildUserProfile}
+import test.domain.model.user.{BuildUser, BuildUserProfile}
 
 class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]

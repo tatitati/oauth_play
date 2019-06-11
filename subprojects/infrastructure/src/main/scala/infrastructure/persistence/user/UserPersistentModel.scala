@@ -6,24 +6,24 @@ case class UserPersistentModel(
   id: Option[Long] = None,
   firstname: String,
   surname: String,
-  datebirth: DateTime,
+  datebirth: Option[DateTime],
   registeredDateTime: DateTime,
   isEmailConfirmed: Boolean,
   email: String,
-  hashPassword: String
+  hashAuthentication: String
 ) {
   override def toString(): String = {
     s"""
       |UserPersistentModel
       |===================
       |   id: ${id.toString}
-      |   firstname: $firstname,
-      |   surname: $surname,
-      |   datebirth: ${datebirth.toString},
-      |   registeredDateTime: ${registeredDateTime.toString},
-      |   isEmailConfirmed: ${isEmailConfirmed.toString},
+      |   hashAuthentication: ${hashAuthentication.toString}
+      |   firstname: $firstname
+      |   surname: $surname
+      |   datebirth: ${datebirth.toString}
+      |   registeredDateTime: ${registeredDateTime.toString}
+      |   isEmailConfirmed: ${isEmailConfirmed.toString}
       |   email: $email,
-      |   hashPassword: $hashPassword
     """.stripMargin
   }
 }
