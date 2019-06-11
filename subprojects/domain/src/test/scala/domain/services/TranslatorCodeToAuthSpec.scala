@@ -5,7 +5,7 @@ import domain.services.TranslatorCodeToAuth
 import org.scalatest.FunSuite
 import test.domain.model.code.BuildCode
 
-class MapCodeToAuthSpec extends FunSuite {
+class TranslatorCodeToAuthSpec extends FunSuite {
 
   test("A code is converted into an auth") {
     val givenCode = BuildCode.any()

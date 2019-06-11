@@ -51,9 +51,9 @@ class User(
     s"""
        |User
        |====
-       |   surrogateID: ${getSurrogateId()}
-       |   account: ${account.toString()}
-       |   profile: ${profile.toString()}
+       |  surrogateID: ${getSurrogateId()}
+       |  ${account.toString()}
+       |  ${profile.toString()}
     """.stripMargin
   }
 }
