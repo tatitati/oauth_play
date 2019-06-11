@@ -11,21 +11,25 @@ object BuildUserPersistentModel {
            withSurrogateId: Option[Long] =  BuildSurrogateId.any(),
            withFirstname: String = Faker.text(),
            withSurname: String = Faker.text(),
-           withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
-           withRegisteredDateTime: DateTime = BuildDate.any(),
-           withIsEmailConfirmed: Boolean = Faker.boolean(),
            withEmail: String = Faker.text(),
-           withHashAuthentication: String = Faker.text(),
+           withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
+           withUsername: String = Faker.text(),
+           withSalt: String = Faker.text(),
+           withHashPassword: String = Faker.text(),
+           withRegisteredDateTime: DateTime = BuildDate.any(),
+           withEmailConfirmed: Boolean = Faker.boolean(),
          ): UserPersistentModel = {
     UserPersistentModel(
       withSurrogateId,
       withFirstname,
       withSurname,
-      withDateBirth,
-      withRegisteredDateTime,
-      withIsEmailConfirmed,
       withEmail,
-      withHashAuthentication
+      withDateBirth,
+      withUsername,
+      withSalt,
+      withHashPassword,
+      withRegisteredDateTime,
+      withEmailConfirmed
     )
   }
 
@@ -33,42 +37,50 @@ object BuildUserPersistentModel {
           withSurrogateId: Option[Long] =  BuildSurrogateId.anyPersisted(),
           withFirstname: String = Faker.text(),
           withSurname: String = Faker.text(),
-          withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
-          withRegisteredDateTime: DateTime = BuildDate.any(),
-          withIsEmailConfirmed: Boolean = Faker.boolean(),
           withEmail: String = Faker.text(),
-          withHashAuthentication: String = Faker.text(),
-        ): UserPersistentModel = {
-    UserPersistentModel(
-      withSurrogateId,
-      withFirstname,
-      withSurname,
-      withDateBirth,
-      withRegisteredDateTime,
-      withIsEmailConfirmed,
-      withEmail,
-      withHashAuthentication
-    )
+          withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
+          withUsername: String = Faker.text(),
+          withSalt: String = Faker.text(),
+          withHashPassword: String = Faker.text(),
+          withRegisteredDateTime: DateTime = BuildDate.any(),
+          withEmailConfirmed: Boolean = Faker.boolean()
+    ): UserPersistentModel = {
+          UserPersistentModel(
+            withSurrogateId,
+            withFirstname,
+            withSurname,
+            withEmail,
+            withDateBirth,
+            withUsername,
+            withSalt,
+            withHashPassword,
+            withRegisteredDateTime,
+            withEmailConfirmed
+          )
   }
 
   def anyNoPersisted(
-          withFirstname: String = Faker.text(),
-          withSurname: String = Faker.text(),
-          withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
-          withRegisteredDateTime: DateTime = BuildDate.any(),
-          withIsEmailConfirmed: Boolean = Faker.boolean(),
-          withEmail: String = Faker.text(),
-          withHashAuthentication: String = Faker.text(),
-        ): UserPersistentModel = {
+                      withFirstname: String = Faker.text(),
+                      withSurname: String = Faker.text(),
+                      withEmail: String = Faker.text(),
+                      withDateBirth: Option[DateTime] = Faker(Some(BuildDate.any()), None),
+                      withUsername: String = Faker.text(),
+                      withSalt: String = Faker.text(),
+                      withHashPassword: String = Faker.text(),
+                      withRegisteredDateTime: DateTime = BuildDate.any(),
+                      withEmailConfirmed: Boolean = Faker.boolean()
+                    ): UserPersistentModel = {
     UserPersistentModel(
       None,
       withFirstname,
       withSurname,
-      withDateBirth,
-      withRegisteredDateTime,
-      withIsEmailConfirmed,
       withEmail,
-      withHashAuthentication
+      withDateBirth,
+      withUsername,
+      withSalt,
+      withHashPassword,
+      withRegisteredDateTime,
+      withEmailConfirmed
     )
   }
 }
