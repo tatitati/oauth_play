@@ -52,7 +52,7 @@ object UserRepository {
       persistentUser.firstname,
       persistentUser.surname,
       persistentUser.datebirth,
-      persistentUser.isEmailConfirmed,
+      persistentUser.emailConfirmed,
       persistentUser.email,
     )
 

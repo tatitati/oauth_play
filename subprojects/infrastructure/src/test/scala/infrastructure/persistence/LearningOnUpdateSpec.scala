@@ -115,9 +115,9 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
       "Gonzalez",
       persistedUser.datebirth,
       persistedUser.registeredDateTime,
-      persistedUser.isEmailConfirmed,
+      persistedUser.emailConfirmed,
       persistedUser.email,
-      persistedUser.hashAuthentication
+      persistedUser.hashPassword
     )
 
     assert(q.updateStatement === "update `user` set `firstname` = ?, `surname` = ?, `datebirth` = ?, `registered_datetime` = ?, `email_confirmed` = ?, `email` = ?, `hashpassword` = ? where `user`.`id` = 1")
