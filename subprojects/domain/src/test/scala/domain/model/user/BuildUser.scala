@@ -6,6 +6,25 @@ import domain.model.user._
 import test.domain.builders.Faker
 
 object BuildUser {
+
+  def any(
+           withSurrogateId: Option[Long] =  Faker(BuildSurrogateId.anyPersisted(), None),
+           withProfile: UserProfile = BuildUserProfile.any(),
+           withUserAccount: UserAccount = BuildUserAccount.any(),
+         ):User  = {
+
+    var user = new User(
+      withProfile,
+      withUserAccount
+    )
+
+    if (withSurrogateId != None) {
+      user.setSurrogateId(withSurrogateId)
+    }
+
+    user
+  }
+
   def anyNoPersisted(
       withProfile: UserProfile = BuildUserProfile.any(),
       withUserAccount: UserAccount = BuildUserAccount.any(),
@@ -31,22 +50,4 @@ object BuildUser {
       user.setSurrogateId(withSurrogateId)
       user
     }
-
-  def any(
-        withSurrogateId: Option[Long] =  Faker(BuildSurrogateId.anyPersisted(), None),
-        withProfile: UserProfile = BuildUserProfile.any(),
-        withUserAccount: UserAccount = BuildUserAccount.any(),
-      ):User  = {
-
-    var user = new User(
-      withProfile,
-      withUserAccount
-    )
-
-    if (withSurrogateId != None) {
-      user.setSurrogateId(withSurrogateId)
-    }
-
-    user
-  }
 }

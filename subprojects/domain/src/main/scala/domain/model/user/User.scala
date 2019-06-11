@@ -4,8 +4,8 @@ import domain.model.IdentifiableInPersistence
 import com.github.nscala_time.time.Imports.DateTime
 
 class User(
-            private var profile: UserProfile,
-            private var account: UserAccount
+        private var profile: UserProfile,
+        private var account: UserAccount
    ) extends IdentifiableInPersistence {
 
   def getUserId: UserId = {
