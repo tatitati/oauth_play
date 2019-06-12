@@ -1,6 +1,5 @@
 package infrastructure.test.persistence.user
 
-import infrastructure.persistence.third.ThirdPersistentModel
 import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
@@ -12,21 +11,22 @@ import infrastructure.persistence.user.{UserPersistentModel, UserSchema}
 class UserSchemaSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
 
-  test("database forconfig type is:") {
+  test("database forconfig type is Database") {
     assert(dbConnection.isInstanceOf[Database])
   }
 
-  test("owner_profile table exists") {
+  test("user table exists") {
     val tables = exec(MTable.getTables).toList
     assert(tables.exists(_.name.name == "user") === true)
   }
 
-  test("Can save one owner profile persistence model including some dates") {
+  test("Can save user including some dates") {
     val persistentModel = BuildUserPersistentModel.anyNoPersisted(
       withDateBirth = Some(BuildDate.specificMoment())
     )
 
-    assert(persistentModel.datebirth.toString() === "2030-08-20T10:02:20.833Z")
+    assert(persistentModel.datebirth.isInstanceOf[Some[_]])
+    assert(persistentModel.datebirth.get.toString() === "2030-08-20T10:02:20.833Z")
     exec(userSchema += persistentModel)
   }
 

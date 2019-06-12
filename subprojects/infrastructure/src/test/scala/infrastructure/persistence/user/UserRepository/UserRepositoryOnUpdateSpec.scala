@@ -11,7 +11,7 @@ class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with B
   val userSchema = TableQuery[UserSchema]
 
   test("Can update some fields of user") {
-    UserRepository.save(
+    UserRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",

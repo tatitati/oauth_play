@@ -12,7 +12,7 @@ class UserRepositoryOnReadSpec extends FunSuite with BeforeAndAfterEach with Bef
   val userSchema = TableQuery[UserSchema]
 
   test("Return Some[User] when finding an existing user") {
-    UserRepository.save(
+    UserRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withEmail = "anyemail"

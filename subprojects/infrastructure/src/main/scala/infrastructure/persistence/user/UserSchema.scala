@@ -14,7 +14,7 @@ class UserSchema(tag: Tag) extends Table[UserPersistentModel](tag, "user") {
   def email = column[String]("email", O.SqlType("VARCHAR(255)"))
   def datebirth = column[Option[DateTime]]("datebirth", O.SqlType("DATETIME")) // this uses custom mapper type
   def username = column[String]("username")
-  def salt = column[String]("hashpassword", O.SqlType("VARCHAR(255)"))
+  def salt = column[String]("salt", O.SqlType("VARCHAR(255)"))
   def hashPassword = column[String]("hashpassword", O.SqlType("VARCHAR(255)"))
   def registeredDateTime = column[DateTime]("registered_datetime", O.SqlType("DATETIME")) // this uses custom mapper type
   def emailconfirmed = column[Boolean]("email_confirmed")

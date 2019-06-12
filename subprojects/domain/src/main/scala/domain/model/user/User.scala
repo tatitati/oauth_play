@@ -13,7 +13,7 @@ class User(
   }
 
   def equals(toUser: User): Boolean = {
-    account.username.equals(toUser.account.username)
+    getUserId.equals(toUser.getUserId)
   }
 
   def getProfile: UserProfile = profile

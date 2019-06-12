@@ -1,7 +1,6 @@
 package infrastructure.test.persistence
 
 import infrastructure.persistence.user.UserRepository
-import infrastructure.test.persistence.Exec
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
@@ -15,7 +14,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   val userSchema = TableQuery[UserSchema]
 
   test("Understand how to update one field in Slick") {
-    UserRepository.save(
+    UserRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -39,7 +38,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   test("I can update a datetime field") {
     import infrastructure.persistence.CustomDateTimeToTimestamp._
 
-    UserRepository.save(
+    UserRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -61,7 +60,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   }
 
   test("I know how to update multiple fields in slick") {
-    UserRepository.save(
+    UserRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -85,7 +84,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   test("I know how to update any (multiple or not) fields in slick") {
     import infrastructure.persistence.CustomDateTimeToTimestamp._
 
-    UserRepository.save(
+    UserRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",

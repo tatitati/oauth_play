@@ -11,7 +11,7 @@ object UserRepository {
   val userSchema = TableQuery[UserSchema]
   implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
-  def save(user: User): Unit = {
+  def create(user: User): Unit = {
     val userPersistent = UserMapper.toPersistent(user)
 
     dbConnection.run(userSchema += userPersistent)
