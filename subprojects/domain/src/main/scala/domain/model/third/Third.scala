@@ -1,27 +1,44 @@
 package domain.model.third
 
 import domain.model.IdentifiableInPersistence
-import scala.util.Random
 
 case class Third(
-                  val thirdId: ThirdId,
-                  private var profile: ThirdProfile)
+      private var profile: ThirdProfile,
+      private var account: ThirdAccount
+  )
   extends IdentifiableInPersistence {
 
-  def getProfile: ThirdProfile = profile
-  def equals(third: Third): Boolean = {
-    this.thirdId.equals(third.thirdId)
+  def getThirdId: ThirdId = {
+    ThirdId(account.username)
   }
 
-  def updateName(withName: String): Unit = {
-    profile = profile.copy(name = withName)
+  def equals(toThird: Third): Boolean = {
+    getThirdId.equals(toThird.getThirdId)
   }
 
-  def updateDescription(withDescription: String): Unit = {
-    profile = profile.copy(description = withDescription)
+  def getProfile(): ThirdProfile = profile
+  def getAccount(): ThirdAccount = account
+
+  def updateEmail(toEmail: String) = {
+    profile = profile.copy(email = toEmail)
+    account = account.copy(emailConfirmed = false)
+    this
   }
 
-  private def makeRandomText(length: Int = 10): String = {
-    Random.alphanumeric take length mkString
+  def isEmailConfirmed(): Boolean = account.emailConfirmed
+
+  def confirmEmail(): Third = {
+    account = account.copy(emailConfirmed = true)
+    this
+  }
+
+  override def toString(): String = {
+    s"""
+       |Third
+       |====
+       |  surrogateID: ${getSurrogateId()}
+       |  ${account.toString()}
+       |  ${profile.toString()}
+    """.stripMargin
   }
 }

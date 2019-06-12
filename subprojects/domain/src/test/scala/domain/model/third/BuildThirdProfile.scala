@@ -4,21 +4,18 @@ import domain.model.third.ThirdProfile
 import test.domain.builders.Faker
 
 object BuildThirdProfile {
-    def any(
-             withName: String = Faker.text(),
-             withDescription: String = Faker.text()
-           ): ThirdProfile = {
 
-      new ThirdProfile(
-          name = withName,
-          description = withDescription
+    def any(
+             withEmail: String = Faker.text()
+     ): ThirdProfile = {
+        ThirdProfile(
+          email = withEmail
       )
     }
 
   def specific(): ThirdProfile = {
-    new ThirdProfile(
-      name = "whatever",
-      description = "my description"
+    ThirdProfile(
+      email = "third_email@whatever.com"
     )
   }
 
