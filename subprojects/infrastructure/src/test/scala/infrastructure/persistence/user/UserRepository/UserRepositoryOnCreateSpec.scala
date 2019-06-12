@@ -7,7 +7,7 @@ import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
 import test.domain.model.user.BuildUser
 
-class UserRepositoryOnSaveSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
+class UserRepositoryOnCreateSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
 
   test("Can insert a new user") {

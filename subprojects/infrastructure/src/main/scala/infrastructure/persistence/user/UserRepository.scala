@@ -12,6 +12,7 @@ object UserRepository {
   implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   def create(user: User): Unit = {
+    //Todo: throw exception if the user has already a surrogate id. 
     val userPersistent = UserMapper.toPersistent(user)
 
     dbConnection.run(userSchema += userPersistent)
