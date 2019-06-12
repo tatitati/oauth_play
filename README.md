@@ -26,17 +26,16 @@
 
 
 ### with application
-- [ ] Add toString for main items
-- [ ] Return surrogate id on insert?
 - [ ] Simplify builders and isolation of them, unnaply() might help?
-- [ ] Define/model concept of Credentials(HASH) for user and third :fire:
-- [ ] Define/model concept of Hash :fire:
+- [x] ~Define/model concept of Credentials(HASH) for user and third~
+- [x] ~Define/model concept of Hash~
 - [x] ~Investigate how to hash a password with sha-256 + salt~
 - [x] ~Add registered date (also needed for hashing+salt in password)~
 - [ ] Add foreign keys (by the last steps)
 - [ ] Add db encryption
 - [ ] Design Register/login of a user (infrastructure layer) :fire:
-- [ ] Design Register/login of a third (infrastructure layer)
+- [ ] Design Register/login of a third (infrastructure layer) :fire:
+- [ ] Start application level: Time for use cases :)
 
 
 ----
