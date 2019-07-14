@@ -5,7 +5,7 @@
 # Todo:
 
 ### Fix:
-
+- [ ] Infrastructure layer for Third. Broken because of changes in domain. :fire::fire:
 
 ### with Docker: 
 
@@ -16,7 +16,6 @@
 
 
 ### with scala
-- [ ] Investigate default values in case classes. Behaviour is not as I was expecting
 
 ### With Play
 
@@ -26,8 +25,7 @@
 
 
 ### with application
-- [ ] Try another flavor of builders. Too duplication, ripling changes.
-- [ ] Simplify builders and isolation of them, unnaply() might help?
+- [ ] Try another flavor of builders. Too duplication, ripling changes. :fire::fire:
 - [x] ~Define/model concept of Credentials(HASH) for user and third~
 - [x] ~Define/model concept of Hash~
 - [x] ~Investigate how to hash a password with sha-256 + salt~
