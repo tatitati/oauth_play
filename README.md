@@ -26,6 +26,7 @@
 
 
 ### with application
+- [ ] Try another flavor of builders. Too duplication, ripling changes.
 - [ ] Simplify builders and isolation of them, unnaply() might help?
 - [x] ~Define/model concept of Credentials(HASH) for user and third~
 - [x] ~Define/model concept of Hash~
