@@ -16,8 +16,8 @@ object ThirdRepository {
     dbConnection.run(thirdSchema += persistentModel)
   }
 
-  def findById(thirdId: ThirdId): Option[Third] = {
-    val future = dbConnection.run(thirdSchema.filter(_.thirdId === thirdId.toString()).result)
+  def findByEmail(byEmail: String): Option[Third] = {
+    val future = dbConnection.run(thirdSchema.filter(_.email === byEmail).result)
     val rows = Await.result(future, 2.seconds)
 
     rows.length match {
@@ -31,8 +31,8 @@ object ThirdRepository {
     }
   }
 
-  def exist(thirdId: ThirdId): Boolean = {
-    val future = dbConnection.run(thirdSchema.filter(_.thirdId === thirdId.toString()).exists.result)
+  def exist(byEmail: String): Boolean = {
+    val future = dbConnection.run(thirdSchema.filter(_.email === byEmail).exists.result)
     Await.result(future, 2.seconds)
   }
 }

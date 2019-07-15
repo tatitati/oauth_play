@@ -7,7 +7,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSuite}
 import slick.jdbc.MySQLProfile.api._
 import slick.lifted.TableQuery
 import domain.model.third.Third
-import test.domain.model.third.{BuildThird, BuildThirdId}
+import test.domain.model.third.{BuildThird, BuildThirdId, BuildThirdProfile}
 
 class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val thirdSchema = TableQuery[ThirdSchema]
@@ -26,43 +26,45 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
 
   test("I understand how to filter") {
     val query = thirdSchema.filter(_.name === "something").result.statements.mkString
-    assert(query === "select `id`, `thirdid`, `name`, `description` from `third` where `name` = 'something'")
+    assert(query === "select `id`, `email`, `username`, `name`, `description`, `salt`, `hashpassword`, `registered_datetime`, `email_confirmed` from `third` where `name` = 'something'")
   }
 
   test("Read return a Some[third] aggregate on reading an existing Third") {
-    val thirdId = BuildThirdId.any()
     ThirdRepository.save(
-      BuildThird.any(withId = thirdId)
+      BuildThird.any(
+        withProfile = BuildThirdProfile.any(
+          withEmail = "anyemail"
+        )
+      )
     )
 
-    val third = ThirdRepository.findById(thirdId = thirdId)
+    val third = ThirdRepository.findByEmail(byEmail = "anyemail")
 
     assert(third.isInstanceOf[Some[Third]])
   }
 
   test("Read return a Some[third] aggregate on reading a no existing Third") {
-    val thirdId = BuildThirdId.any()
+    val third = ThirdRepository.findByEmail(byEmail = "non-existing-email")
 
-    val third = ThirdRepository.findById(thirdId = thirdId)
-
-    assert(third === None)
+    assert(third == None)
   }
 
   test("exist return true on checking an existing third") {
-    val thirdId = BuildThirdId.any()
     ThirdRepository.save(
-      BuildThird.any(withId = thirdId)
+      BuildThird.any(
+        withProfile = BuildThirdProfile.any(
+          withEmail = "anyemail"
+        )
+      )
     )
 
-    val exist = ThirdRepository.exist(thirdId = thirdId)
+    val exist = ThirdRepository.exist(byEmail = "anyemail")
 
     assert(exist === true)
   }
 
   test("exist return false on checking a non existing third") {
-    val thirdId = BuildThirdId.any()
-
-    val exist = ThirdRepository.exist(thirdId = thirdId)
+    val exist = ThirdRepository.exist(byEmail = "non-existing")
 
     assert(exist === false)
   }
