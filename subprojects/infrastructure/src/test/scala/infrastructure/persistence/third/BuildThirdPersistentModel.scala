@@ -1,47 +1,78 @@
 package infrastructure.test.persistence.third
 
 import infrastructure.persistence.third.ThirdPersistentModel
-import test.domain.builders.{BuildUuid, Faker}
+import test.domain.builders.{BuildDate, BuildUuid, Faker}
+import com.github.nscala_time.time.Imports.DateTime
 
 object BuildThirdPersistentModel {
 
   def any(
            withSurrogateId: Option[Long] = Faker(Some(Faker.long()), None),
-           withId: String = BuildUuid.any().toString,
+           withEmail: String = Faker.text(),
+           withUsername: String = Faker.text(),
            withName: String = Faker.text(),
-           withDescription: String = Faker.text()
+           withDescription: String = Faker.text(),
+           withSalt: String = Faker.text(),
+           withHashPassword: String = Faker.text(),
+           withRegisteredDateTime: DateTime = BuildDate.any(),
+           withEmailConfirmed: Boolean = Faker.boolean()
          ): ThirdPersistentModel = {
     ThirdPersistentModel(
-        withSurrogateId,
-        withId,
-        withName,
-        withDescription
+      withSurrogateId,
+      withEmail,
+      withUsername,
+      withName,
+      withDescription,
+      withSalt,
+      withHashPassword,
+      withRegisteredDateTime,
+      withEmailConfirmed
     )
   }
 
   def anyPersisted(
-            withId: String = BuildUuid.any().toString,
+            withEmail: String = Faker.text(),
+            withUsername: String = Faker.text(),
             withName: String = Faker.text(),
-            withDescription: String = Faker.text()
+            withDescription: String = Faker.text(),
+            withSalt: String = Faker.text(),
+            withHashPassword: String = Faker.text(),
+            withRegisteredDateTime: DateTime = BuildDate.any(),
+            withEmailConfirmed: Boolean = Faker.boolean()
          ): ThirdPersistentModel = {
     any(
-      withSurrogateId = Faker(Some(Faker.int())),
-      withId,
+      Faker(Some(Faker.long()), None),
+      withEmail,
+      withUsername,
       withName,
-      withDescription
+      withDescription,
+      withSalt,
+      withHashPassword,
+      withRegisteredDateTime,
+      withEmailConfirmed
     )
   }
 
   def anyNoPersisted(
-            withId: String = BuildUuid.any().toString,
+            withEmail: String = Faker.text(),
+            withUsername: String = Faker.text(),
             withName: String = Faker.text(),
-            withDescription: String = Faker.text()
+            withDescription: String = Faker.text(),
+            withSalt: String = Faker.text(),
+            withHashPassword: String = Faker.text(),
+            withRegisteredDateTime: DateTime = BuildDate.any(),
+            withEmailConfirmed: Boolean = Faker.boolean()
           ): ThirdPersistentModel = {
     any(
-      withSurrogateId = None,
-      withId,
+      None,
+      withEmail,
+      withUsername,
       withName,
-      withDescription
+      withDescription,
+      withSalt,
+      withHashPassword,
+      withRegisteredDateTime,
+      withEmailConfirmed
     )
   }
 }
