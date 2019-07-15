@@ -7,20 +7,17 @@ import org.scalatest.FunSuite
 class ThirdMapperToDomainSpec extends FunSuite {
 
   test("Fields are mapped to domain") {
-    val givenPersistent = BuildThirdPersistentModel.anyPersisted(
-      withName = "whatever"
-    )
+    val givenPersistent = BuildThirdPersistentModel.anyPersisted()
 
     val thenDomain = ThirdMapper.toDomain(givenPersistent)
 
     assert(thenDomain.isInstanceOf[Third])
-    assert(thenDomain.getProfile.name === "whatever")
   }
 
   test("Surrogate id is also mapped properly to domain") {
     val givenPersistent = BuildThirdPersistentModel.anyPersisted()
 
-    assert(givenPersistent.surrogateId.isInstanceOf[Some[_]])
+    assert(givenPersistent.id.isInstanceOf[Some[_]])
 
     val thenDomain = ThirdMapper.toDomain(givenPersistent)
 

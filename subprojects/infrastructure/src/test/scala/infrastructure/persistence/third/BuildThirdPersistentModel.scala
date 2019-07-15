@@ -41,7 +41,7 @@ object BuildThirdPersistentModel {
             withEmailConfirmed: Boolean = Faker.boolean()
          ): ThirdPersistentModel = {
     any(
-      Faker(Some(Faker.long()), None),
+      Some(Faker.long()),
       withEmail,
       withUsername,
       withName,
