@@ -1,16 +1,11 @@
 package infrastructure.persistence.third
 
-import java.util.UUID
-
-import domain.model.third.{Third, ThirdAccount, ThirdId, ThirdProfile}
+import domain.model.third.{Third, ThirdAccount, ThirdProfile}
 
 object ThirdMapper {
 
   def toDomain(fromPersistent: ThirdPersistentModel): Third = {
     val domain = Third(
-//      thirdId = ThirdId(
-//        value = UUID.fromString(fromPersistent.id)
-//      ),
       profile = ThirdProfile(
         email = fromPersistent.email,
         name = fromPersistent.name,
