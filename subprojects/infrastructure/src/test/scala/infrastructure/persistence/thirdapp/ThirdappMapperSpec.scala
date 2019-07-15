@@ -7,7 +7,7 @@ import test.domain.model.thirdapp.BuildThirdapp
 
 class ThirdappMapperSpec extends FunSuite {
 
-  test("I can map from domain to persistent model") {
+  test("Domain -> Persistent") {
     val givenDomain = BuildThirdapp.any()
 
     val thenPersistent = ThirdappMapper.toPersistent(givenDomain)
@@ -15,7 +15,7 @@ class ThirdappMapperSpec extends FunSuite {
     assert(thenPersistent.isInstanceOf[ThirdappPersistentModel])
   }
 
-  test("can map from persistent to domain") {
+  test("Persistent -> Domain") {
     val givenPersistent = BuildThirdappPersistentModel.anyPersisted()
 
     val thenDomain = ThirdappMapper.toDomain(givenPersistent)

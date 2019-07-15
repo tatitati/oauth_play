@@ -23,7 +23,7 @@ object ThirdappMapper {
   def toDomain(thirdappPersistentModel: ThirdappPersistentModel): Thirdapp = {
     val thirdapp = new Thirdapp(
       thirdappId = ThirdappId(UUID.fromString(thirdappPersistentModel.thirdappId)),
-      thirdId = ThirdId(UUID.fromString(thirdappPersistentModel.thirdId)),
+      thirdId = ThirdId(thirdappPersistentModel.thirdId),
       credentials = ThirdappCredentials(
         clientId = thirdappPersistentModel.clientid,
         clientSecret = thirdappPersistentModel.clientsecret
