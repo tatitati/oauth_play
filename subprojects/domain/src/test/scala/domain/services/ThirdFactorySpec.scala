@@ -11,6 +11,8 @@ class ThirdFactorySpec extends FunSuite{
       withFirstname = "francisco",
       withSurname = "gonzaled",
       withEmail = "oneemail@whatever.net",
+      withName = "a name",
+      withDescription = "a description",
       withPassword = "1234"
     )
 

@@ -11,13 +11,17 @@ object ThirdFactory {
               withFirstname: String,
               withSurname: String,
               withEmail: String,
+              withName: String,
+              withDescription: String,
               withPassword: String
             ): Third = {
     val salt = this.createSalt()
 
     new Third(
       ThirdProfile(
-        email = withEmail
+        email = withEmail,
+        name = withName,
+        description = withDescription
       ),
       ThirdAccount(
         username = withUsername,
