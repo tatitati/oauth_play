@@ -25,12 +25,17 @@ object ThirdMapper {
     domain
   }
 
-//  def toPersistent(third: Third): ThirdPersistentModel= {
-//    ThirdPersistentModel(
-//      surrogateId = third.getSurrogateId(),
-//      id = third.thirdId.toString,
-//      name = third.getProfile.name,
-//      description = third.getProfile.description
-//    )
-//  }
+  def toPersistent(third: Third): ThirdPersistentModel= {
+    ThirdPersistentModel(
+      id = third.getSurrogateId(),
+      email = third.getProfile.email,
+      username = third.getAccount().username,
+      name = third.getProfile.name,
+      description = third.getProfile.description,
+      salt = third.getAccount().salt,
+      hashPassword = third.getAccount().hashedPassword,
+      registeredDateTime = third.getAccount().registeredDateTime,
+      emailconfirmed = third.getAccount().emailConfirmed
+    )
+  }
 }

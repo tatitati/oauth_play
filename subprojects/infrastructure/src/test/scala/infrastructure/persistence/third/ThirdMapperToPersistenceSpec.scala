@@ -2,7 +2,7 @@ package infrastructure.test.persistence.third
 
 import infrastructure.persistence.third.{ThirdMapper, ThirdPersistentModel}
 import org.scalatest.FunSuite
-import test.domain.model.third.{BuildThird, BuildThirdProfile}
+import test.domain.model.third.BuildThird
 
 class ThirdMapperToPersistenceSpec extends FunSuite {
 
@@ -15,20 +15,18 @@ class ThirdMapperToPersistenceSpec extends FunSuite {
 
   test("ThirdDomain -> ThirdPersistentModel gives the expected ThirdPersistentModel") {
     val givenThirdDomain = BuildThird.any(
-      withSurrogateId = None,
-      withThirdProfile = BuildThirdProfile.specific()
+      withSurrogateId = None
     )
 
     val thenPersistent = ThirdMapper.toPersistent(givenThirdDomain)
 
-    assert(thenPersistent.surrogateId === None)
-    assert(thenPersistent.name === "whatever")
+    assert(thenPersistent.id === None)
   }
 
   test("Surrogate id is mapped to the proper value in persistent model") {
     val givenThirdDomain = BuildThird.any(withSurrogateId = Some(6))
     val persistent = ThirdMapper.toPersistent(givenThirdDomain)
 
-    assert(persistent.surrogateId === Some(6))
+    assert(persistent.id === Some(6))
   }
 }
