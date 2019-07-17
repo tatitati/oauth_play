@@ -60,8 +60,13 @@ class UserRepository {
     dbConnection.run(updateAction)
   }
 
-  def existByEmail(email: String): Boolean = {
+  def existEmail(email: String): Boolean = {
     val future = dbConnection.run(userSchema.filter(_.email === email).exists.result)
+    Await.result(future, 2.seconds)
+  }
+
+  def existUsername(username: String): Boolean = {
+    val future = dbConnection.run(userSchema.filter(_.username === username).exists.result)
     Await.result(future, 2.seconds)
   }
 }
