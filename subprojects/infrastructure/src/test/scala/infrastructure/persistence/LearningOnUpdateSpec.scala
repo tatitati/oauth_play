@@ -12,9 +12,10 @@ import com.github.nscala_time.time.Imports.DateTime
 class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
 
   val userSchema = TableQuery[UserSchema]
+  val userRepository = new UserRepository()
 
   test("Understand how to update one field in Slick") {
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -38,7 +39,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   test("I can update a datetime field") {
     import infrastructure.persistence.CustomDateTimeToTimestamp._
 
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -60,7 +61,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   }
 
   test("I know how to update multiple fields in slick") {
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -84,7 +85,7 @@ class LearningOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeA
   test("I know how to update any (multiple or not) fields in slick") {
     import infrastructure.persistence.CustomDateTimeToTimestamp._
 
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",

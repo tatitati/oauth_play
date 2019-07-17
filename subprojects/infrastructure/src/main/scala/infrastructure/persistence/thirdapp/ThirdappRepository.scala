@@ -8,7 +8,7 @@ import scala.concurrent.Await
 import domain.model.thirdapp.Thirdapp
 import infrastructure.persistence.Connection
 
-object ThirdappRepository {
+class ThirdappRepository {
 
   val thirdappSchema = TableQuery[ThirdappSchema]
   implicit val dbConnection = Connection.getSingletonConnection("mydb")

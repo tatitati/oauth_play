@@ -9,9 +9,10 @@ import test.domain.model.user.{BuildUser, BuildUserProfile}
 
 class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
+  val userRepository = new UserRepository()
 
   test("Can update some fields of user") {
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withFirstname = "francisco",
@@ -20,16 +21,16 @@ class UserRepositoryOnUpdateSpec extends FunSuite with BeforeAndAfterEach with B
       )
     )
 
-    val user1 = UserRepository.findByEmail("email1").get
+    val user1 = userRepository.findByEmail("email1").get
 
     user1
       .updateFirstname("manolo")
       .updateSurname("gonzalez")
 
 
-    UserRepository.update(user1)
+    userRepository.update(user1)
 
-    val user2 = UserRepository.findByEmail("email1").get
+    val user2 = userRepository.findByEmail("email1").get
 
     assert(user2.getProfile.firstname === "manolo")
     assert(user2.getProfile.surname === "gonzalez")

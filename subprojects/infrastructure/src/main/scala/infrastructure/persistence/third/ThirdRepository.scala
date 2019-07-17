@@ -7,7 +7,7 @@ import slick.lifted.TableQuery
 import scala.concurrent.duration._
 import scala.concurrent.Await
 
-object ThirdRepository {
+class ThirdRepository {
   val thirdSchema = TableQuery[ThirdSchema]
   implicit val dbConnection = Connection.getSingletonConnection("mydb")
 

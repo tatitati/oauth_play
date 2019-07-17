@@ -9,14 +9,15 @@ import test.domain.model.user.{BuildUser, BuildUserProfile}
 
 class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
+  val userRepository = new UserRepository()
 
   test("Return false on checking by email a non-existing user") {
-    val user = UserRepository.existByEmail("anyemail")
+    val user = userRepository.existByEmail("anyemail")
     assert(user === false)
   }
 
   test("Return true on checking an existing user") {
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withEmail = "anyemail"
@@ -24,7 +25,7 @@ class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with Be
       )
     )
 
-    val userExists = UserRepository.existByEmail("anyemail")
+    val userExists = userRepository.existByEmail("anyemail")
     assert(userExists === true)
   }
 

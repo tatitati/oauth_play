@@ -10,9 +10,10 @@ import test.domain.model.thirdapp.{BuildThirdapp, BuildThirdappCredentials}
 
 class ThirdappRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val thirdappSchema = TableQuery[ThirdappSchema]
+  val thirdAppRepository = new ThirdappRepository()
 
   test("Can insert a new thirdapp") {
-    ThirdappRepository.save(
+    thirdAppRepository.save(
       BuildThirdapp.any()
     )
 
@@ -26,13 +27,13 @@ class ThirdappRepositorySpec extends FunSuite with BeforeAndAfterEach with Befor
   test("Return Some on reading an existing thirdapp ") {
     val credentials = BuildThirdappCredentials.any()
 
-    ThirdappRepository.save(
+    thirdAppRepository.save(
       BuildThirdapp.any(
         withCredentials = credentials
       )
     )
 
-    val third = ThirdappRepository.read(credentials = credentials)
+    val third = thirdAppRepository.read(credentials = credentials)
 
     assert(third.isInstanceOf[Some[Thirdapp]])
     assert(third.get.getCredentials === credentials)
@@ -42,7 +43,7 @@ class ThirdappRepositorySpec extends FunSuite with BeforeAndAfterEach with Befor
   test("Return None on reading an non-existing thirdapp ") {
     val credentials = BuildThirdappCredentials.any()
 
-    val third = ThirdappRepository.read(credentials = credentials)
+    val third = thirdAppRepository.read(credentials = credentials)
 
     assert(third === None)
   }
@@ -50,13 +51,13 @@ class ThirdappRepositorySpec extends FunSuite with BeforeAndAfterEach with Befor
   test("Return true if a thirdapp exists") {
     val credentials = BuildThirdappCredentials.any()
 
-    ThirdappRepository.save(
+    thirdAppRepository.save(
       BuildThirdapp.any(
         withCredentials = credentials
       )
     )
 
-    val third = ThirdappRepository.existByCredentials(credentials = credentials)
+    val third = thirdAppRepository.existByCredentials(credentials = credentials)
 
     assert(third === true)
   }
@@ -64,7 +65,7 @@ class ThirdappRepositorySpec extends FunSuite with BeforeAndAfterEach with Befor
   test("Returns False if a thirdapp no exists") {
     val credentials = BuildThirdappCredentials.any()
 
-    val third = ThirdappRepository.existByCredentials(credentials = credentials)
+    val third = thirdAppRepository.existByCredentials(credentials = credentials)
 
     assert(third === false)
   }

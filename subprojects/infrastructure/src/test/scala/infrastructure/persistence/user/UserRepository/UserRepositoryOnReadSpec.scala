@@ -10,9 +10,10 @@ import test.domain.model.user.{BuildUser, BuildUserProfile}
 
 class UserRepositoryOnReadSpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val userSchema = TableQuery[UserSchema]
+  val userRepository = new UserRepository()
 
   test("Return Some[User] when finding an existing user") {
-    UserRepository.create(
+    userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
           withEmail = "anyemail"
@@ -20,14 +21,14 @@ class UserRepositoryOnReadSpec extends FunSuite with BeforeAndAfterEach with Bef
       )
     )
 
-    val user = UserRepository.findByEmail("anyemail")
+    val user = userRepository.findByEmail("anyemail")
 
     assert(user.isInstanceOf[Some[User]])
     assert(user.get.getProfile.email === "anyemail")
   }
 
   test("Return None on Read if user is not found") {
-    val user = UserRepository.findByEmail("anyemail")
+    val user = userRepository.findByEmail("anyemail")
     assert(user === None)
   }
 

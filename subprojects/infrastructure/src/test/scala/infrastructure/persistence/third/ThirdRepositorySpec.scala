@@ -10,9 +10,10 @@ import test.domain.model.third.{BuildThird, BuildThirdProfile}
 
 class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAndAfterAll with Exec {
   val thirdSchema = TableQuery[ThirdSchema]
+  val thirdRepository = new ThirdRepository()
 
   test("I can insert a new third") {
-    ThirdRepository.save(
+    thirdRepository.save(
       BuildThird.any()
     )
 
@@ -29,7 +30,7 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
   }
 
   test("Read return a Some[third] aggregate on reading an existing Third") {
-    ThirdRepository.save(
+    thirdRepository.save(
       BuildThird.any(
         withProfile = BuildThirdProfile.any(
           withEmail = "anyemail"
@@ -37,19 +38,19 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
       )
     )
 
-    val third = ThirdRepository.findByEmail(byEmail = "anyemail")
+    val third = thirdRepository.findByEmail(byEmail = "anyemail")
 
     assert(third.isInstanceOf[Some[Third]])
   }
 
   test("Read return a Some[third] aggregate on reading a no existing Third") {
-    val third = ThirdRepository.findByEmail(byEmail = "non-existing-email")
+    val third = thirdRepository.findByEmail(byEmail = "non-existing-email")
 
     assert(third == None)
   }
 
   test("exist return true on checking an existing third") {
-    ThirdRepository.save(
+    thirdRepository.save(
       BuildThird.any(
         withProfile = BuildThirdProfile.any(
           withEmail = "anyemail"
@@ -57,13 +58,13 @@ class ThirdRepositorySpec extends FunSuite with BeforeAndAfterEach with BeforeAn
       )
     )
 
-    val exist = ThirdRepository.exist(byEmail = "anyemail")
+    val exist = thirdRepository.exist(byEmail = "anyemail")
 
     assert(exist === true)
   }
 
   test("exist return false on checking a non existing third") {
-    val exist = ThirdRepository.exist(byEmail = "non-existing")
+    val exist = thirdRepository.exist(byEmail = "non-existing")
 
     assert(exist === false)
   }
