@@ -32,8 +32,8 @@
 - [x] ~Add registered date (also needed for hashing+salt in password)~
 - [ ] Add foreign keys (by the last steps) :fire:
 - [ ] Add db encryption
-- [ ] Design Register/login of a user (infrastructure layer) :fire:
-- [ ] Design Register/login of a third (infrastructure layer) :fire:
+- [ ] Design Register/login of a USER (infrastructure layer) :fire:
+- [ ] Design Register/login of a THIRD (infrastructure layer)
 - [x] ~Start application level: Time for use cases~
 
 
