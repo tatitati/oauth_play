@@ -6,12 +6,12 @@ import test.domain.model.code.BuildCode
 
 class CodeSerializerSpec extends FunSuite {
 
-  test("Can serialize an specific object") {
-    val resByCode = BuildCode.specific()
+  test("Code -> Json") {
+    val givenCode = BuildCode.specific()
 
-    val inJson = CodeSerializer.toJson(resByCode)
+    val thenJson = CodeSerializer.toJson(givenCode)
 
-    assert(inJson ===
+    assert(thenJson ===
       """{
         |"id":"47331985-9cd6-4632-b505-fceb476100a1",
         |"user_id":"user id one",
@@ -25,7 +25,7 @@ class CodeSerializerSpec extends FunSuite {
         |}""".stripMargin.replaceAll("\n", ""))
   }
 
-  test("Can deserialize an specific json") {
+  test("Json -> Code") {
 
     val givenJson =
       """{

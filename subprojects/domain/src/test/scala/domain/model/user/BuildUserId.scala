@@ -14,7 +14,7 @@ object BuildUserId {
   }
 
   def specific2(): UserId = {
-    UserId("user id one")
+    UserId("user id two")
   }
 
   private def randomText(length: Int = 10): String = {

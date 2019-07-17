@@ -14,7 +14,7 @@ object CodeSerializer {
 
     val givenMap = Json.obj(
         "id" -> code.codeId.toString,
-        "user_id" -> code.userId.toString,
+        "user_id" -> code.userId.value.toString,
         "site_id" -> code.thirdappId.toString,
         "state" -> code.state,
         "scope" -> Json.obj(
