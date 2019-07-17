@@ -34,6 +34,15 @@ val thirdDependencies = Seq(
 
 scalacOptions in Test ++= Seq("-Yrangepos")
 
+lazy val application = (project in file("subprojects/application"))
+  .dependsOn(domain % "test->test;compile->compile", infrastructure % "test->test;compile->compile")
+  .settings(
+    name := "application subproject",
+    commonsSettings,
+    libraryDependencies ++= thirdDependencies,
+    parallelExecution in Test := false
+  )
+
 lazy val infrastructure = (project in file("subprojects/infrastructure"))
   .dependsOn(domain % "test->test;compile->compile")
   .settings(
@@ -58,7 +67,7 @@ lazy val learning = (project in file("subprojects/learning"))
   )
 
 lazy val root = (project in file("."))
-  .aggregate(learning, domain,infrastructure)
+  .aggregate(learning, domain, infrastructure, application)
   .settings(
     name := "root project",
     commonsSettings,
