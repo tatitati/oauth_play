@@ -16,7 +16,7 @@ class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with Be
     assert(user === false)
   }
 
-  test("Return true on checking an existing email user") {
+  test("Exist email in db?") {
     userRepository.create(
       BuildUser.anyNoPersisted(
         withProfile = BuildUserProfile.any(
@@ -29,7 +29,7 @@ class UserRepositoryOnExistSpec extends FunSuite with BeforeAndAfterEach with Be
     assert(userExists === true)
   }
 
-  test("Return true on checking an existing username user") {
+  test("exist username in db?") {
     userRepository.create(
       BuildUser.anyNoPersisted(
         withUserAccount = BuildUserAccount.any(
