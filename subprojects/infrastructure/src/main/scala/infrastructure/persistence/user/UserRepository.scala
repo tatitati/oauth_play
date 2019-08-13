@@ -15,7 +15,6 @@ class UserRepository {
     import UserMapper._
     // Initially I had this, but not is using IMPLICIT CONVERSION from UserMapper
     // val userPersistent = UserMapper.toPersistent(user)
-
     dbConnection.run(userSchema += user)
   }
 
