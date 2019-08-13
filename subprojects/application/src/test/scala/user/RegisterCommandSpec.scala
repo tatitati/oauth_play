@@ -13,7 +13,7 @@ class RegisterCommandSpec extends FunSuite with BeforeAndAfterEach with BeforeAn
   val registerCommand = new RegisterCommand(
     userRepository = new UserRepository()
   )
-  
+
   test("Can register a non existing user") {
     val givenRegisterRequest = BuildRegisterRequest.any(
       withSurname = "my_username"

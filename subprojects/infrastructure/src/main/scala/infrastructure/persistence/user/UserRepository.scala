@@ -12,13 +12,15 @@ class UserRepository {
   implicit val dbConnection = Connection.getSingletonConnection("mydb")
 
   def create(user: User): Unit = {
-    //Todo: throw exception if the user has already a surrogate id.
-    val userPersistent = UserMapper.toPersistent(user)
+    import UserMapper._
+    // Initially I had this, but not is using IMPLICIT CONVERSION from UserMapper
+    // val userPersistent = UserMapper.toPersistent(user)
 
-    dbConnection.run(userSchema += userPersistent)
+    dbConnection.run(userSchema += user)
   }
 
   def findByEmail(email: String): Option[User] = {
+    import UserMapper._
     val future = dbConnection.run(userSchema.filter(_.email === email).result)
     val rows = Await.result(future, 2.seconds)
 
@@ -26,7 +28,9 @@ class UserRepository {
       case 0 => None
       case _ => {
           val userPersistedModel = rows.head
-          Some(UserMapper.toDomain(userPersistedModel))
+          // Initially I had this, but not is using IMPLICIT CONVERSION from UserMapper
+          // Some(UserMapper.toDomain(userPersistedModel))
+          Some(userPersistedModel)
       }
     }
   }

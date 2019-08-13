@@ -4,7 +4,7 @@ import domain.model.user.{User, UserAccount, UserProfile}
 
 object UserMapper {
 
-  def toDomain(fromPersistent: UserPersistentModel): User = {
+  implicit def toDomain(fromPersistent: UserPersistentModel): User = {
     val domain = new User(
         profile = UserProfile(
           firstname = fromPersistent.firstname,
@@ -29,7 +29,7 @@ object UserMapper {
     domain
   }
 
-  def toPersistent(user: User): UserPersistentModel= {
+  implicit def toPersistent(user: User): UserPersistentModel= {
     new UserPersistentModel(
       id = user.getSurrogateId(),
       firstname = user.getProfile.firstname,
