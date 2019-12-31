@@ -1,9 +1,9 @@
 package domain.model.third
 
 case class ThirdProfile(
-    val email: String,
-    val name: String,
-    val description: String
+    email: String,
+    name: String,
+    description: String
 ) {
   override def toString(): String = {
     s"""

@@ -68,6 +68,7 @@ lazy val learning = (project in file("subprojects/learning"))
 
 lazy val root = (project in file("."))
   .aggregate(learning, domain, infrastructure, application)
+  .dependsOn(domain, infrastructure, application)
   .settings(
     name := "root project",
     commonsSettings,

@@ -1,3 +1,3 @@
 package domain.model.third
 
-case class ThirdId(val value: String)
+case class ThirdId(value: String)
